@@ -262,12 +262,12 @@ Figure 7. Fully Convolutional Networks with Skip Combining : FCN-16s</p>
 <p>그렇다면 하나 더 이전의 pooling layer와도 합칠 수 있지 않을까요? 당연히 있습니다.
 그림 8은 pool 3 layer + 2배 upsampling된 pool 4 layer + 4배 upsampling 된 conv7 layer 값을 다시 8배 upsampling 하여 FCN-8s라는 보다 detail한 segmentation 이미지를 만들어내는 구조입니다.</p>
 
-<p><img src="assets/images/posts/2017-12-21-FCN/fig8.code.jpg" alt="" />
+<p><img src="assets/images/posts/2017-12-21-FCN/fig8.jpg" alt="" />
 Figure 8. Fully Convolutional Networks with Skip Combining : FCN-8s</p>
 
 <p>자 그러면 각 skip combining 한 후의 최종 segmentation 결과를 살펴볼까요? 확실히 FCN-32s에 비해 FCN-16s가, FCN-16s에 비해 FCN-8s가 detail한 segmentation 결과를 보여줌을 알 수 있습니다.</p>
 
-<p><img src="assets/images/posts/2017-12-21-FCN/fig9.code.jpg" alt="" />
+<p><img src="assets/images/posts/2017-12-21-FCN/fig9.jpg" alt="" />
 Figure 9. Segmentation Results</p>
 
 
