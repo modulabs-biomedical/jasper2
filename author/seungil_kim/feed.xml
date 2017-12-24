@@ -1,25 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-12-24T21:52:43+09:00</updated><id>/</id><title type="html">바이오메디컬랩@모두의연구소</title><subtitle>모두의연구소 바이오메디컬랩 기술 블로그입니다.</subtitle><entry><title type="html">Fully Convolutional Networks for Semantic Segmentation</title><link href="/FCN" rel="alternate" type="text/html" title="Fully Convolutional Networks for Semantic Segmentation" /><published>2017-12-21T19:00:00+09:00</published><updated>2017-12-21T19:00:00+09:00</updated><id>/FCN</id><content type="html" xml:base="/FCN">&lt;p&gt;논문 링크 : &lt;a href=&quot;https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf&quot;&gt;Fully Convolutional Networks for Semantic Segmentation&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8" ?>
 
-&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>/</title>
+   
+   <link>/</link>
+   <description>모두의연구소 바이오메디컬랩 기술 블로그입니다.</description>
+   <language>en-uk</language>
+   
+      
+            
+               
+               
+                  <managingEditor>김승일</managingEditor>
+            
+      
+   
+   <title>
+   <![CDATA[ 김승일 - 바이오메디컬랩@모두의연구소 ]]>
+   </title>
+   <description>
+   <![CDATA[ 모두의연구소 바이오메디컬랩 기술 블로그입니다. ]]>
+   </description>
+   <link>/</link>
+   <image>
+   <url>/assets/images/favicon.png</url>
+   <title>김승일 - 바이오메디컬랩@모두의연구소</title>
+   <link>/</link>
+   </image>
+   <generator>Jekyll 3.6.2</generator>
+   <lastBuildDate></lastBuildDate>
+   <atom:link href="/author/seungil_kim/rss.xml" rel="self" type="application/rss+xml"/>
+   <ttl>60</ttl>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Fully Convolutional Networks for Semantic Segmentation</title>
+	  <link>/FCN</link>
+		
+				
+						<author>김승일</author>
+				
+		
+	  <pubDate>2017-12-21T19:00:00+09:00</pubDate>
+	  <guid>/FCN</guid>
+	  <description><![CDATA[
+	     <p>논문 링크 : <a href="https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf">Fully Convolutional Networks for Semantic Segmentation</a></p>
 
-&lt;p&gt;Semantic Segmentation는 영상을 pixel단위로 어떤 object인지 classification 하는 것이라고 볼 수 있습니다. (언제나 강력추천하는) &lt;a href=&quot;http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf&quot;&gt;cs231n 강의 자료&lt;/a&gt;를 보시면 쉽게 잘 나와 있죠.&lt;/p&gt;
+<h2 id="introduction">Introduction</h2>
 
-&lt;p&gt;&lt;img src=&quot;assets/images/posts/2017-12-21-FCN/fig1.jpg&quot; alt=&quot;&quot; /&gt;
-Figure 1. Computer Vision Tasks&lt;/p&gt;
+<p>Semantic Segmentation는 영상을 pixel단위로 어떤 object인지 classification 하는 것이라고 볼 수 있습니다. (언제나 강력추천하는) <a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf">cs231n 강의 자료</a>를 보시면 쉽게 잘 나와 있죠.</p>
 
-&lt;p&gt;예전에는 이렇게 pixel 단위로 classification을 하기 위해,&lt;/p&gt;
+<p><img src="assets/images/posts/2017-12-21-FCN/fig1.jpg" alt="" />
+Figure 1. Computer Vision Tasks</p>
 
-&lt;ol&gt;
-  &lt;li&gt;그림 2와 같이 일정 영역을 포함하는 window를 만들고,&lt;/li&gt;
-  &lt;li&gt;window 내 영상의 object를 classifiy해서&lt;/li&gt;
-  &lt;li&gt;window 중앙의 pixel의 class 값이라고 간주하는&lt;/li&gt;
-&lt;/ol&gt;
+<p>예전에는 이렇게 pixel 단위로 classification을 하기 위해,</p>
 
-&lt;p&gt;방식을 주로 사용했습니다.&lt;/p&gt;
+<ol>
+  <li>그림 2와 같이 일정 영역을 포함하는 window를 만들고,</li>
+  <li>window 내 영상의 object를 classifiy해서</li>
+  <li>window 중앙의 pixel의 class 값이라고 간주하는</li>
+</ol>
 
-&lt;p&gt;&lt;img src=&quot;assets/images/posts/2017-12-21-FCN/fig2.jpg&quot; alt=&quot;&quot; /&gt;
-Figure 2.&lt;/p&gt;
-&lt;strike&gt; 그림이 필요해서 커피숖에서 작업중에 급조를...
+<p>방식을 주로 사용했습니다.</p>
+
+<p><img src="assets/images/posts/2017-12-21-FCN/fig2.jpg" alt="" />
+Figure 2.</p>
+<strike> 그림이 필요해서 커피숖에서 작업중에 급조를...
  
 당연히 
 **계산량의 문제** 와 global information을 사용하지 못하고 window라는 제한된 영역의 **local information만 사용한다** 는 문제가 있을 겁니다.
@@ -38,16 +86,16 @@ Fully Convolutional Networks의 구조는 다음 그림 3과 같으며, 크게 4
 ![](assets/images/posts/2017-12-21-FCN/fig3.jpg)
 Figure 3. Architecture of Fully Convolutional Networks
 
-&amp;gt; **네트워크 구조**
+&gt; **네트워크 구조**
 
-&amp;gt;  **(1) Feature Extraction** : 
-&amp;gt;  일반적인 CNN의 구조에서 많이 보이는 conv layer들로 구성되어 있습니다. 
-&amp;gt;  **(2) Feature-level Classification** : 
-&amp;gt;  추출된 Feature map의 pixel 하나하나마다 classification을 수행합니다. 이 때 classification된 결과는 매우 coarse합니다. (그림 3에서 초록색 박스에 tabby cat class에 대한 Classification 결과 참고) 
-&amp;gt;  **(3) Upsampling** :
-&amp;gt;  coarse 한 결과를 backward strided convolution 을 통해 upsampling하여 원래의 image size로 키워줍니다. 
-&amp;gt; **(4) Segmentation** : 
-&amp;gt; 각 class의 upsampling된 결과를 사용하여 하나의 Segmentation  결과 이미지를 만들어 줍니다.
+&gt;  **(1) Feature Extraction** : 
+&gt;  일반적인 CNN의 구조에서 많이 보이는 conv layer들로 구성되어 있습니다. 
+&gt;  **(2) Feature-level Classification** : 
+&gt;  추출된 Feature map의 pixel 하나하나마다 classification을 수행합니다. 이 때 classification된 결과는 매우 coarse합니다. (그림 3에서 초록색 박스에 tabby cat class에 대한 Classification 결과 참고) 
+&gt;  **(3) Upsampling** :
+&gt;  coarse 한 결과를 backward strided convolution 을 통해 upsampling하여 원래의 image size로 키워줍니다. 
+&gt; **(4) Segmentation** : 
+&gt; 각 class의 upsampling된 결과를 사용하여 하나의 Segmentation  결과 이미지를 만들어 줍니다.
 
 그러면, 각 네트워크의 내부들을 한번 살펴보겠습니다.
 
@@ -110,4 +158,11 @@ Figure 8. Fully Convolutional Networks with Skip Combining : FCN-8s
 ![](assets/images/posts/2017-12-21-FCN/fig9.code.jpg)
 Figure 9. Segmentation Results
 
-&lt;/strike&gt;</content><author><name>김승일</name></author><category term="논문 리뷰" /><summary type="html">논문 링크 : Fully Convolutional Networks for Semantic Segmentation</summary></entry></feed>
+</strike>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

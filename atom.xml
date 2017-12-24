@@ -8,16 +8,16 @@
     
       
       <item>
-        <title>Welcome to Ghost</title>
+        <title>Fully Convolutional Networks for Semantic Segmentation</title>
         
-          <description>&lt;p&gt;Hey! Welcome to Ghost, it’s great to have you :)&lt;/p&gt;
+          <description>&lt;p&gt;논문 링크 : &lt;a href=&quot;https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf&quot;&gt;Fully Convolutional Networks for Semantic Segmentation&lt;/a&gt;&lt;/p&gt;
 
 </description>
         
-        <pubDate>Thu, 27 Jul 2017 19:00:00 +0900</pubDate>
+        <pubDate>Thu, 21 Dec 2017 19:00:00 +0900</pubDate>
         <link>
-        /welcome</link>
-        <guid isPermaLink="true">/welcome</guid>
+        /FCN</link>
+        <guid isPermaLink="true">/FCN</guid>
       </item>
       
     
