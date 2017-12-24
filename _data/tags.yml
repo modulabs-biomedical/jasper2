@@ -1,3 +1,7 @@
+papers:
+  name: 논문 리뷰
+  description: False
+  cover: False
 #speeches:
 #  name: speeches
 #  description: Some of the greatest words ever spoken.

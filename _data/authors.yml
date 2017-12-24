@@ -1,12 +1,12 @@
-ghost:
-  username: ghost
-  name: Ghost
-  url_full: http://myJekyll.github.io/jasper2/
-  url: myJekyll.github.io/jasper2
-  bio: The professional publishing platform
+seungil_kim:
+  username: seungil_kim
+  name: 김승일
+  url_full: False
+  url: False
+  bio: 모두의연구소 연구소장
   picture: assets/images/ghost.png
-  facebook: ghost
-  twitter: tryghost
+  facebook: False
+  twitter: False
   cover: False
 #hannah:
 #  username: hannah
