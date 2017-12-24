@@ -3,9 +3,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
    
-      <title>/jasper2/</title>
+      <title>/</title>
    
-   <link>/jasper2/</link>
+   <link>/</link>
    <description>The professional publishing platform</description>
    <language>en-uk</language>
    
@@ -35,21 +35,21 @@
    <description>
    <![CDATA[ The professional publishing platform ]]>
    </description>
-   <link>/jasper2/</link>
+   <link>/</link>
    <image>
-   <url>/jasper2/assets/images/favicon.png</url>
+   <url>/assets/images/favicon.png</url>
    <title>Edgar Rice Burroughs - Ghost</title>
-   <link>/jasper2/</link>
+   <link>/</link>
    </image>
    <generator>Jekyll 3.6.2</generator>
    <lastBuildDate></lastBuildDate>
-   <atom:link href="/jasper2/author/edgar/rss.xml" rel="self" type="application/rss+xml"/>
+   <atom:link href="/author/edgar/rss.xml" rel="self" type="application/rss+xml"/>
    <ttl>60</ttl>
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
 	  <title>Out to Sea</title>
-	  <link>/jasper2/out-to-sea</link>
+	  <link>/out-to-sea</link>
 		
 				
 		
@@ -68,7 +68,7 @@
 				
 		
 	  <pubDate>1912-07-24T19:18:00+09:00</pubDate>
-	  <guid>/jasper2/out-to-sea</guid>
+	  <guid>/out-to-sea</guid>
 	  <description><![CDATA[
 	     <p>I had this story from one who had no business to tell it to me, or to any other. I may credit the seductive influence of an old vintage upon the narrator for the beginning of it, and my own skeptical incredulity during the days that followed for the balance of the strange tale.</p>
 
