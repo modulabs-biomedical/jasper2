@@ -3,7 +3,7 @@ layout: post
 current: post
 cover:  assets/images/posts/2018-01-03-Learning_Deconvolution_Network_for_Semantic_Segmentation/fig2.jpg
 navigation: True
-title: Fully Convolutional Networks for Semantic Segmentation
+title: Learning Deconvolution Network for Semantic Segmentation
 date: 2018-01-03 00:00:00
 tags: [논문 리뷰]
 class: post-template
