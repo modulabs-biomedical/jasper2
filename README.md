@@ -99,7 +99,7 @@ $ git push origin source
 
 ~~~bash
 $ cd ../build
-$ git add -a
+$ git add --all
 $ git commit -m '새 게시글 등록'
 $ git push origin master
 ~~~
