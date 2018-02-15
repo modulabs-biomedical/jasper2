@@ -1,110 +1,105 @@
-## Jasper2
+# 모두의 연구소 바이오메디컬랩 블로그
 
-[![Build Status](https://travis-ci.org/myJekyll/jasper2.svg?branch=master)](https://travis-ci.org/myJekyll/jasper2)
-[![Ruby](https://img.shields.io/badge/ruby-2.4.2-blue.svg?style=flat)](http://travis-ci.org/myJekyll/jasper2)
-[![Jekyll](https://img.shields.io/badge/jekyll-3.6.2-blue.svg?style=flat)](http://travis-ci.org/myJekyll/jasper2)
+바이오메디컬랩 블로그에는 다음 스택으로 구성되어 있습니다.
 
-This is a full-featured port of Ghost's default theme [Casper](https://github.com/tryghost/casper)
-*v2.1.7* for [Jekyll](https://jekyllrb.com/) / [GitHub Pages](https://pages.github.com/).
+- [GitHub Pages](https://pages.github.com/): GitHub에서 정적 웹사이트를
+    호스팅해주는 서비스
+- [Jekyll](https://jekyllrb.com/): 정적 웹사이트 제작 도구
+- [Jasper2](https://github.com/jekyller/jasper2): Jekyll 테마
 
-## Live Demo
+정적 웹사이트란, 웹서버에 별도의 DB 및 콘텐츠 관리 프로그램(CMS) 없이,
+순수한 HTML 웹 문서로만 구성된 홈페이지입니다. 콘텐츠를 관리해주는 프로그램이
+따로 없으므로, 새로운 내용을 올릴 때마다 소스코드에서 다시 웹 문서를 컴파일하는
+방식으로 최신화해야 합니다.
 
-[Ghost's Casper](https://demo.ghost.io) // [Jasper2](https://myJekyll.github.io/jasper2)
+## 설치
 
-![home page](https://raw.githubusercontent.com/myJekyll/jasper2/master/assets/screenshot-desktop.jpg)
+Ubuntu 16.04 기준입니다.
 
+### 1. 준비사항
 
-## Features
+Ruby 버전 2.1.0 이상이 필요합니다.
 
-* Out of the box support for multiple authors (via `_data/authors.yml`)
-* Full author information including: picture, bio, website, twitter, facebook, etc.
-* Tag description(s) and personalised covers (via `_data/tags.yml`)
-* Related posts view at the bottom of each post
-* All Ghost default pages: Author page(s), Tag page(s), About page(s), 404, etc.
-* Pagination (infinite scrolling or standard pagination, i.e. posts across multiple pages)
-* Atom Feeds by [Jekyll-feed](https://github.com/jekyll/jekyll-feed)
-* Toggleable subscribe button (requires an external service)
-* Code Syntax Highlight with [highlight.js](https://highlightjs.org/)
-* Support for Google Analytics tracking
-* Support for Disqus comments (not Ghost standard)
+~~~bash
+$ ruby --version
+ruby 2.X.X
+~~~
 
+Bundler를 설치합니다.
 
-## Getting Started
+~~~bash
+$ gem install bundler
+~~~
 
-### Deployment
+NPM 및 Gulp를 설치합니다.
 
-**Important:**  For security reasons, Github does not allow plugins (under `_plugins/`) when
-deploying with Github Pages. This means:
+~~~bash
+$ sudo apt-get install npm
+$ sudo ln -s /usr/bin/nodejs /usr/bin/node
+$ sudo npm install gulp-cli -g
+$ sudo npm install gulp -D
+~~~
 
-**1)** that we need to generate your site locally (more details below) and push the resulting
-HTML (the contents of `_site/` or `../jasper2-pages/`) to a Github repository, that GitHub Pages
-then host;
+### 2. 소스 및 빌드 준비
 
-**2)** built the site with [travis-ci](https://travis-ci.org/) (with goodies from
-[jekyll-travis](https://github.com/mfenner/jekyll-travis)) automatically pushing the
-generated HTML files to a *gh-pages* branch.
-This later approach is the one I am currently using to generate the live demo.
+새 디렉토리를 만듭니다.
 
-For option **1)** simply clone this repository (*master branch*), and then run
-`bundle exec jekyll serve` inside the directory. Upload the resulting `_site/` (or `../jasper2-pages/`)
-contents to your repository (*master branch* if uploading as your personal page
-(e.g. username.github.io) or *gh-pages branch* if uploading as a project page
-(as for the [demo](https://github.com/myJekyll/jasper2/tree/gh-pages)).
+~~~bash
+$ mkdir blog
+$ cd blog
+~~~
 
-For option **2)** you will need to set up travis-ci for your personal fork. Briefly all you
-need then is to change your details in *[\_config.yml](_config.yml)* so that you can push
-to your github repo. You will also need to generate a secure key to add to your
-*[.travis.yml](.travis.yml)* (you can find more info on how to do it in that file).
-Also make sure you read the documentation from
-[jekyll-travis](https://github.com/mfenner/jekyll-travis). This approach has clear
-advantages in that you simply push your file changes to GitHub and all the HTML files
-are generated for you and pushed to *gh-pages*. Also you get to know if everything is
-still fine with your site builds. Don't hesitate to contact me if you still have any
-issues (see below about issue tracking).
+소스 및 빌드 브랜치를 각각의 디렉토리로 가져옵니다.
 
-### Author Pages
+~~~bash
+$ git clone https://github.com/modulabs-biomedical.github.io --branch source src
+$ git clone https://github.com/modulabs-biomedical.github.io --branch master build
+~~~
 
-In order to properly generate author pages you need to rename the field *author* in the
-front matter of every post to match that of your each author's *username* as defined
-in the *[\_data/authors.yml](_data/authors.yml)* file.
-With the latest update, multiple author blogs are now supported out of the box.
+소스 디렉토리로 이동하여 플러그인들을 설치해줍니다.
 
-### Compiling Styles
-
-Following on the way Casper styles are compiled as [described here](https://github.com/tryghost/casper#development):
-
-Jasper2 styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need Node and Gulp installed globally. After that, from the theme's root directory:
-
-```bash
+~~~bash
+$ cd src
+$ bundle install
 $ npm install
+~~~
+
+### 3. 로컬 환경에서 사이트 확인
+
+드디어 준비가 끝났습니다. 사이트를 보기 위해 임시 서버를 실행합니다.
+
+~~~bash
+$ bundle exec jekyll serve
+~~~
+
+http://127.0.0.1:4000에서 사이트를 확인할 수 있습니다.
+
+### 4. 새로운 게시글 입력
+
+이미지는 `assets/images`에, 게시글은 `_posts`에 넣어주고, 다시 임시 서버를
+실행하여 잘 적용되었는지 확인합니다.
+
+### 5. 변경사항 업로드
+
+`assets/css` 내의 파일을 변경한 경우 스타일을 다시 컴파일해야 합니다.
+
+~~~bash
 $ gulp
-```
+~~~
 
-Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
+원하는 결과를 얻었다면 변경점들을 git에 commit하고 push합니다.
 
-## Issues and Contributing
+~~~bash
+$ git add --all
+$ git commit -m '새 게시글 등록'
+$ git push origin source
+~~~
 
-This install builds well with Ruby v2.4.2 and Jekyll v3.6.2. If you run into any problems
-please log them on the [issue tracker](https://github.com/myJekyll/jasper2/issues).
+빌드된 결과물도 동일하게 commit 및 push합니다.
 
-Feel free pull-request your patches and fixes.
-
-## Thanks
-
-
-Many thanks to the Ghost team for all the design work. Also many thanks to all contributors,
-that help keeping the project alive and updated :smile:
-
-
-## Copyright & License
-
-Same licence as the one provided by Ghost's team. See Casper's theme [license](GHOST.txt).
-
-Copyright (C) 2015-2017 - Released under the MIT License.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+~~~bash
+$ cd ../build
+$ git add -a
+$ git commit -m '새 게시글 등록'
+$ git push origin master
+~~~
