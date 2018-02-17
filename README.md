@@ -21,6 +21,7 @@ Ubuntu 16.04 기준입니다.
 Ruby 버전 2.1.0 이상이 필요합니다.
 
 ~~~bash
+$ sudo apt-get install ruby ruby-dev dh-autoreconf
 $ ruby --version
 ruby 2.X.X
 ~~~
