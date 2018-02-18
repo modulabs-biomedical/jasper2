@@ -31,7 +31,30 @@
     <meta property="og:site_name" content="바이오메디컬랩@모두의연구소" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="About" />
-    <meta property="og:description" content="{% for author in site.data.authors %} {% include site-nav.html %} {% if author[1].picture %} {% endif %} {{ author[1].name }} {% if author[1].bio %} {{ author[1].bio }} {% endif %} {% if author[1].location %} {{ author[1].location }} &bull; {% endif %} {% if paginator.total_posts == 0 %}No posts{% elsif paginator.total_posts" />
+    <meta property="og:description" content="
+
+{% for author in site.data.authors %}
+
+    {% if author[1].picture %}
+        
+    {% endif %}
+    
+        {{ author[1].name }}
+        {% if author[1].bio %}
+            {{ author[1].bio }}
+        {% else %}
+            Read more posts by this author.
+        {% endif %}
+    
+
+
+        Read More
+    
+{% endfor %}
+
+
+
+" />
     <meta property="og:url" content="/author/" />
     <meta property="og:image" content="/assets/images/blog-cover.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
@@ -40,7 +63,30 @@
     <meta property="article:modified_time" content="" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="About" />
-    <meta name="twitter:description" content="{% for author in site.data.authors %} {% include site-nav.html %} {% if author[1].picture %} {% endif %} {{ author[1].name }} {% if author[1].bio %} {{ author[1].bio }} {% endif %} {% if author[1].location %} {{ author[1].location }} &bull; {% endif %} {% if paginator.total_posts == 0 %}No posts{% elsif paginator.total_posts" />
+    <meta name="twitter:description" content="
+
+{% for author in site.data.authors %}
+
+    {% if author[1].picture %}
+        
+    {% endif %}
+    
+        {{ author[1].name }}
+        {% if author[1].bio %}
+            {{ author[1].bio }}
+        {% else %}
+            Read more posts by this author.
+        {% endif %}
+    
+
+
+        Read More
+    
+{% endfor %}
+
+
+
+" />
     <meta name="twitter:url" content="/" />
     <meta name="twitter:image" content="/assets/images/blog-cover.jpg" />
     <meta name="twitter:label1" content="Written by" />
@@ -70,7 +116,30 @@
         "@type": "WebPage",
         "@id": "/author/"
     },
-    "description": "{% for author in site.data.authors %} {% include site-nav.html %} {% if author[1].picture %} {% endif %} {{ author[1].name }} {% if author[1].bio %} {{ author[1].bio }} {% endif %} {% if author[1].location %} {{ author[1].location }} &bull; {% endif %} {% if paginator.total_posts == 0 %}No posts{% elsif paginator.total_posts"
+    "description": "
+
+{% for author in site.data.authors %}
+
+    {% if author[1].picture %}
+        
+    {% endif %}
+    
+        {{ author[1].name }}
+        {% if author[1].bio %}
+            {{ author[1].bio }}
+        {% else %}
+            Read more posts by this author.
+        {% endif %}
+    
+
+
+        Read More
+    
+{% endfor %}
+
+
+
+"
 }
     </script>
 
@@ -143,257 +212,80 @@ into the {body} of the default.hbs template -->
                 <!-- #author  -->
 <!-- Everything inside the #author tags pulls data from the author -->
 
-    <header class="site-header outer no-cover">
-        <div class="inner">
-            <nav class="site-nav">
-    <div class="site-nav-left">
+<section class="author-card">
+    
+        <img class="author-profile-image" src="/assets/images/seungil_kim.png" alt="" />
+    
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="/author/">김승일</a></h4>
         
-            
-                <a class="site-nav-logo" href="/"><img src="/assets/images/blog-icon.png" alt="바이오메디컬랩@모두의연구소" /></a>
-            
+            <p>연구 빼고 다하는 모두의연구소 대표 겸 연구소장. 모두의연구소를 만들었어요. 딥러닝은 취미로 하고 있습니다.</p>
         
-        
-            <ul class="nav" role="menu">
-    <li class="nav-home" role="menuitem"><a href="/">목록</a></li>
-    <li class="nav-about" role="menuitem"><a href="/about/">소개</a></li>
-</ul>
-
-        
+    </section>
+</section>
+<div class="post-full-footer-right">
+        <a class="author-card-button" href="/author/">Read More</a>
     </div>
-    <div class="site-nav-right">
-        <div class="social-links">
-            
-            
-        </div>
+
+<section class="author-card">
+    
+        <img class="author-profile-image" src="/assets/images/june_oh.jpg" alt="" />
+    
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="/author/">오상준</a></h4>
         
+            <p>딥바이오 연구원. 대학에서는 영문학과 철학을 배우고, 이제는 딥러닝을 통한 의료영상분석을 공부하고 있습니다.</p>
+        
+    </section>
+</section>
+<div class="post-full-footer-right">
+        <a class="author-card-button" href="/author/">Read More</a>
     </div>
-</nav>
 
-            <div class="site-header-content">
-                
-                    <img class="author-profile-image" src="/assets/images/seungil_kim.png" alt="" />
-                
-                <h1 class="site-title">김승일</h1>
-                
-                    <h2 class="author-bio">연구 빼고 다하는 모두의연구소 대표 겸 연구소장. 모두의연구소를 만들었어요. 딥러닝은 취미로 하고 있습니다.</h2>
-                
-                <div class="author-meta">
-                    
-                    <div class="author-stats">
-                         posts <span class="bull">&bull;</span>
-                    </div>
-                    
-                        <a class="social-link social-link-wb" href="http://www.modulabs.co.kr" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.5 11.957c0 6.375-5.163 11.544-11.532 11.544C5.599 23.5.5 18.125.5 11.75.5 5.542 5.37.758 11.505.511l.5-.011C18.374.5 23.5 5.582 23.5 11.957zM11.505.511c-6 6.5-6 14.98 0 22.98m1-22.98c6 6.5 6 14.977 0 22.977M2 17.479h20.063m-19.657-12h19.062m-20.968 6h22.938" stroke="#000" stroke-linejoin="round" stroke-miterlimit="10" fill="none"/></svg>
-</a>
-                    
-                    
-                    
-                    <a class="social-link social-link-rss" href="http://cloud.feedly.com/#subscription/feed//author//feed.xml" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
-</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <header class="site-header outer no-cover">
-        <div class="inner">
-            <nav class="site-nav">
-    <div class="site-nav-left">
+<section class="author-card">
+    
+        <img class="author-profile-image" src="/assets/images/ghost.png" alt="" />
+    
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="/author/">홍규석</a></h4>
         
-            
-                <a class="site-nav-logo" href="/"><img src="/assets/images/blog-icon.png" alt="바이오메디컬랩@모두의연구소" /></a>
-            
+            <p>Read <a href="/author/">more posts</a> by this author.</p>
         
-        
-            <ul class="nav" role="menu">
-    <li class="nav-home" role="menuitem"><a href="/">목록</a></li>
-    <li class="nav-about" role="menuitem"><a href="/about/">소개</a></li>
-</ul>
-
-        
+    </section>
+</section>
+<div class="post-full-footer-right">
+        <a class="author-card-button" href="/author/">Read More</a>
     </div>
-    <div class="site-nav-right">
-        <div class="social-links">
-            
-            
-        </div>
+
+<section class="author-card">
+    
+        <img class="author-profile-image" src="/assets/images/yspaik.jpg" alt="" />
+    
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="/author/">백영상</a></h4>
         
+            <p>AI Solution Architect. 오랫동안 꿈을 그리는 사람은 마침내 그 꿈을 닮아간다.</p>
+        
+    </section>
+</section>
+<div class="post-full-footer-right">
+        <a class="author-card-button" href="/author/">Read More</a>
     </div>
-</nav>
 
-            <div class="site-header-content">
-                
-                    <img class="author-profile-image" src="/assets/images/june_oh.jpg" alt="" />
-                
-                <h1 class="site-title">오상준</h1>
-                
-                    <h2 class="author-bio">딥바이오 연구원. 대학에서는 영문학과 철학을 배우고, 이제는 딥러닝을 통한 의료영상분석을 공부하고 있습니다.</h2>
-                
-                <div class="author-meta">
-                    
-                    <div class="author-stats">
-                         posts <span class="bull">&bull;</span>
-                    </div>
-                    
-                        <a class="social-link social-link-wb" href="http://www.deepbio.co.kr" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.5 11.957c0 6.375-5.163 11.544-11.532 11.544C5.599 23.5.5 18.125.5 11.75.5 5.542 5.37.758 11.505.511l.5-.011C18.374.5 23.5 5.582 23.5 11.957zM11.505.511c-6 6.5-6 14.98 0 22.98m1-22.98c6 6.5 6 14.977 0 22.977M2 17.479h20.063m-19.657-12h19.062m-20.968 6h22.938" stroke="#000" stroke-linejoin="round" stroke-miterlimit="10" fill="none"/></svg>
-</a>
-                    
-                    
-                    
-                    <a class="social-link social-link-rss" href="http://cloud.feedly.com/#subscription/feed//author//feed.xml" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
-</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <header class="site-header outer no-cover">
-        <div class="inner">
-            <nav class="site-nav">
-    <div class="site-nav-left">
+<section class="author-card">
+    
+        <img class="author-profile-image" src="/assets/images/peter_cha.jpg" alt="" />
+    
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="/author/">차예솔</a></h4>
         
-            
-                <a class="site-nav-logo" href="/"><img src="/assets/images/blog-icon.png" alt="바이오메디컬랩@모두의연구소" /></a>
-            
+            <p>딥러닝을 공부 할수록, 요리사가 새로운 도구를 사는 것 같은 설레임을 느끼는 중 입니다. 딥러닝은 생업으로 하고 있습니다.</p>
         
-        
-            <ul class="nav" role="menu">
-    <li class="nav-home" role="menuitem"><a href="/">목록</a></li>
-    <li class="nav-about" role="menuitem"><a href="/about/">소개</a></li>
-</ul>
-
-        
+    </section>
+</section>
+<div class="post-full-footer-right">
+        <a class="author-card-button" href="/author/">Read More</a>
     </div>
-    <div class="site-nav-right">
-        <div class="social-links">
-            
-            
-        </div>
-        
-    </div>
-</nav>
-
-            <div class="site-header-content">
-                
-                    <img class="author-profile-image" src="/assets/images/ghost.png" alt="" />
-                
-                <h1 class="site-title">홍규석</h1>
-                
-                <div class="author-meta">
-                    
-                    <div class="author-stats">
-                         posts <span class="bull">&bull;</span>
-                    </div>
-                    
-                    
-                    
-                    <a class="social-link social-link-rss" href="http://cloud.feedly.com/#subscription/feed//author//feed.xml" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
-</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <header class="site-header outer no-cover">
-        <div class="inner">
-            <nav class="site-nav">
-    <div class="site-nav-left">
-        
-            
-                <a class="site-nav-logo" href="/"><img src="/assets/images/blog-icon.png" alt="바이오메디컬랩@모두의연구소" /></a>
-            
-        
-        
-            <ul class="nav" role="menu">
-    <li class="nav-home" role="menuitem"><a href="/">목록</a></li>
-    <li class="nav-about" role="menuitem"><a href="/about/">소개</a></li>
-</ul>
-
-        
-    </div>
-    <div class="site-nav-right">
-        <div class="social-links">
-            
-            
-        </div>
-        
-    </div>
-</nav>
-
-            <div class="site-header-content">
-                
-                    <img class="author-profile-image" src="/assets/images/yspaik.jpg" alt="" />
-                
-                <h1 class="site-title">백영상</h1>
-                
-                    <h2 class="author-bio">AI Solution Architect. 오랫동안 꿈을 그리는 사람은 마침내 그 꿈을 닮아간다.</h2>
-                
-                <div class="author-meta">
-                    
-                    <div class="author-stats">
-                         posts <span class="bull">&bull;</span>
-                    </div>
-                    
-                    
-                    
-                    <a class="social-link social-link-rss" href="http://cloud.feedly.com/#subscription/feed//author//feed.xml" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
-</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <header class="site-header outer no-cover">
-        <div class="inner">
-            <nav class="site-nav">
-    <div class="site-nav-left">
-        
-            
-                <a class="site-nav-logo" href="/"><img src="/assets/images/blog-icon.png" alt="바이오메디컬랩@모두의연구소" /></a>
-            
-        
-        
-            <ul class="nav" role="menu">
-    <li class="nav-home" role="menuitem"><a href="/">목록</a></li>
-    <li class="nav-about" role="menuitem"><a href="/about/">소개</a></li>
-</ul>
-
-        
-    </div>
-    <div class="site-nav-right">
-        <div class="social-links">
-            
-            
-        </div>
-        
-    </div>
-</nav>
-
-            <div class="site-header-content">
-                
-                    <img class="author-profile-image" src="/assets/images/peter_cha.jpg" alt="" />
-                
-                <h1 class="site-title">차예솔</h1>
-                
-                    <h2 class="author-bio">딥러닝을 공부 할수록, 요리사가 새로운 도구를 사는 것 같은 설레임을 느끼는 중 입니다. 딥러닝은 생업으로 하고 있습니다.</h2>
-                
-                <div class="author-meta">
-                    
-                    <div class="author-stats">
-                         posts <span class="bull">&bull;</span>
-                    </div>
-                    
-                        <a class="social-link social-link-wb" href="http://www.deepbio.co.kr" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.5 11.957c0 6.375-5.163 11.544-11.532 11.544C5.599 23.5.5 18.125.5 11.75.5 5.542 5.37.758 11.505.511l.5-.011C18.374.5 23.5 5.582 23.5 11.957zM11.505.511c-6 6.5-6 14.98 0 22.98m1-22.98c6 6.5 6 14.977 0 22.977M2 17.479h20.063m-19.657-12h19.062m-20.968 6h22.938" stroke="#000" stroke-linejoin="round" stroke-miterlimit="10" fill="none"/></svg>
-</a>
-                    
-                    
-                    
-                    <a class="social-link social-link-rss" href="http://cloud.feedly.com/#subscription/feed//author//feed.xml" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
-</a>
-                </div>
-            </div>
-        </div>
-    </header>
 
 <!-- /author -->
 
