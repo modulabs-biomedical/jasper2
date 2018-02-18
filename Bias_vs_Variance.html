@@ -182,9 +182,11 @@ into the {body} of the default.hbs template -->
 
 <p><img src="assets/images/posts/2018-01-25-Bias_vs_Variance/2.jpg" alt="sampling_fluctuation" /></p>
 
-<p>우리가 sub set을 만들 때, 전체(통계에서 말하는 모집단)에서 샘플을 뽑아서 만들텐데, 뽑는 방법, 횟수 등에 따라 위 그림처럼 sub set 간의 변동이 발생하게 됩니다. 다시 말해서 train data와 test data는 이 변동 분 만큼 다를 수 있는 것입니다. train data는 이러한 변동을 포함하고 있는데, train error를 줄이기 위해 모델의 복잡도를 계속 높이면 이 변동 분까지 학습하게 됩니다. 아래 그림의 첫 번째가 이러한 내용을 설명한 것입니다. Linear-&gt;Quadratic-&gt;Spline으로 갈 수록 모델 복잡도가 올라가는 것을 의미하고, Quadratic이 detail한 부분까지 추정하는 것이 위에서의 언급된 샘플링 시의 변동 분까지 학습한 것이라고 할 수 있습니다. 아래의 두번 째 그림처럼 모델 복잡도를 계속 높이면 train loss는 계속해서 감소하지만, sub set간의 변동 분까지 학습하는 시점부터는 test error가 증가하게 됩니다. 이는 train data의 변동 분까지 학습하여 test data에 대한 추정 값의 variance가 증가한 그림1의 (b)와 같은 상황이라고 할 수 있습니다. 그래서 마지막 그림처럼 모델 복잡도가 올라갈 수록 bias는 감소하나 variance는 증가하는 bias-variance trade off 관계가 되는 것입니다. 마지막 그림에서 MSE는 test data의 total loss로 이해하시면 됩니다. 참고: https://gerardnico.com/wiki/data_mining/bias_trade-off</p>
+<p>우리가 sub set을 만들 때, 전체(통계에서 말하는 모집단)에서 샘플을 뽑아서 만들텐데, 뽑는 방법, 횟수 등에 따라 위 그림처럼 sub set 간의 변동이 발생하게 됩니다. 다시 말해서 train data와 test data는 이 변동 분 만큼 다를 수 있는 것입니다. train data는 이러한 변동을 포함하고 있는데, train error를 줄이기 위해 모델의 복잡도를 계속 높이면 이 변동 분까지 학습하게 됩니다. 아래 그림의 첫 번째가 이러한 내용을 설명한 것입니다. Linear-&gt;Quadratic-&gt;Spline으로 갈 수록 모델 복잡도가 올라가는 것을 의미하고, Quadratic이 detail한 부분까지 추정하는 것이 위에서의 언급된 샘플링 시의 변동 분까지 학습한 것이라고 할 수 있습니다. 아래의 두번 째 그림처럼 모델 복잡도를 계속 높이면 train loss는 계속해서 감소하지만, sub set간의 변동 분까지 학습하는 시점부터는 test error가 증가하게 됩니다. 이는 train data의 변동 분까지 학습하여 test data에 대한 추정 값의 variance가 증가한 그림1의 (b)와 같은 상황이라고 할 수 있습니다. 그래서 마지막 그림처럼 모델 복잡도가 올라갈 수록 bias는 감소하나 variance는 증가하는 bias-variance trade off 관계가 되는 것입니다. 마지막 그림에서 MSE는 test data의 total loss로 이해하시면 됩니다.</p>
 
-<p><img src="https://gerardnico.com/wiki/_media/data_mining/bias-variance_trade-off_1.jpg?cache=" alt="img" /></p>
+<p>참고: <a href="https://gerardnico.com/wiki/data_mining/bias_trade-off">https://gerardnico.com/wiki/data_mining/bias_trade-off</a></p>
+
+<p><img src="assets/images/posts/2018-01-25-Bias_vs_Variance/4.jpg" alt="img" /></p>
 
 <p>여기서 최적의 모델 복잡도는 위 그림의 세번 째처럼 bias와 variance가 교차하는 부분에서 MSE or total test loss(bias와 variance의 합)가 가장 작은 점의 복잡도를 갖는 것입니다. 즉, 모델의 학습이 train error의 최소가 아닌 test error가 최소가 되도록 해야 한다는 것으로 이해할 수 있습니다. 추가적으로 고려해볼 방법은 처음부터 train set이 갖는 변동을 작게 만드는 것입니다. 이 방법이 바로 n-fold cross validation으로 여러 data set을 만들어 평균적으로 적용시킴으로써 sub set간의 변동을 줄이는 방법이라고 할 수 있습니다.</p>
 
