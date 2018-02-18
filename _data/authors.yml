@@ -1,20 +1,50 @@
 seungil_kim:
   username: seungil_kim
   name: 김승일
-  url_full: False
-  url: False
-  bio: 모두의연구소 연구소장
-  picture: assets/images/ghost.png
+  bio: 연구 빼고 다하는 모두의연구소 대표 겸 연구소장. 모두의연구소를 만들었어요. 딥러닝은 취미로 하고 있습니다.
+  picture: assets/images/seungil_kim.png
+  url: modulabs.co.kr
+  url_full: http://www.modulabs.co.kr
   facebook: False
   twitter: False
   cover: False
 june_oh:
   username: june_oh
   name: 오상준
-  url_full: False
-  url: False
-  bio: 딥바이오 연구원
+  bio: 딥바이오 연구원. 대학에서는 영문학과 철학을 배우고, 이제는 딥러닝을 통한 의료영상분석을 공부하고 있습니다.
+  picture: assets/images/june_oh.jpg
+  url: www.deepbio.co.kr
+  url_full: http://www.deepbio.co.kr
+  facebook: False
+  twitter: False
+  cover: False
+hks:
+  username: hks
+  name: 홍규석
+  bio:
   picture: assets/images/ghost.png
+  url: False
+  url_full: False
+  facebook: False
+  twitter: False
+  cover: False
+yspaik:
+  username: yspaik
+  name: 백영상
+  bio: AI Solution Architect. 오랫동안 꿈을 그리는 사람은 마침내 그 꿈을 닮아간다.
+  picture: assets/images/yspaik.jpg
+  url: False
+  url_full: False
+  facebook: False
+  twitter: False
+  cover: False
+peter_cha:
+  username: peter_cha
+  name: 차예솔
+  bio: 딥러닝을 공부 할수록, 요리사가 새로운 도구를 사는 것 같은 설레임을 느끼는 중 입니다. 딥러닝은 생업으로 하고 있습니다.
+  picture: assets/images/peter_cha.jpg
+  url: www.deepbio.co.kr
+  url_full: http://www.deepbio.co.kr
   facebook: False
   twitter: False
   cover: False
