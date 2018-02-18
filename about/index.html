@@ -1,0 +1,53 @@
+---
+layout: default
+current: about
+title: 소개
+navigation: true
+logo: 'assets/images/ghost.png'
+class: page-template
+subclass: 'post page'
+---
+<!-- The big featured header, it uses blog cover image as a BG if available -->
+<header class="site-header outer">
+    <div class="inner">
+        {% include site-nav.html %}
+    </div>
+</header>
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full {{ page.subclass }} {% unless page.cover %}no-image{% endunless %}">
+
+            <header class="post-full-header">
+                <h1 class="post-full-title">{{ page.title }}</h1>
+            </header>
+
+            <!-- #author  -->
+            <!-- Everything inside the #author tags pulls data from the author -->
+            {% for author in site.data.authors %}
+            <div class="post-full-footer">
+                <section class="author-card">
+                    {% if author[1].picture %}
+                        <img class="author-profile-image" src="{{ site.baseurl }}{{ author[1].picture }}" alt="{{ author[1].name}}" />
+                    {% endif %}
+                    <section class="author-card-content">
+                        <h4 class="author-card-name"><a href="{{ site.baseurl }}author/{{ author[1].username }}">{{ author[1].name }}</a></h4>
+                        {% if author[1].bio %}
+                            <p>{{ author[1].bio }}</p>
+                        {% else %}
+                            <p>Read <a href="{{ site.baseurl }}author/{{ author[1].username }}">more posts</a> by this author.</p>
+                        {% endif %}
+                    </section>
+                </section>
+                <div class="post-full-footer-right">
+                    <a class="author-card-button" href="{{ site.baseurl }}author/{{ author[1].username }}">Read More</a>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+            {% endfor %}
+            <!-- /author -->
+        </article>
+
+  </div>
+</main>
