@@ -35,22 +35,26 @@
     
 
         
-        
-        {% for author in site.data.authors %}
-        
-            {% if author[1].picture %}
+            
                 
-            {% endif %}
+                
+                {% for author in site.data.authors %}
+                
+                    {% if author[1].picture %}
+                        
+                    {% endif %}
+                    
+                        {{ author[1].name }}
+                        {% if author[1].bio %}
+                            {{ author[1].bio }}
+                        {% else %}
+                            Read more posts by this author.
+                        {% endif %}
+                    
+                
+                {% endfor %}
+                
             
-                {{ author[1].name }}
-                {% if author[1].bio %}
-                    {{ author[1].bio }}
-                {% else %}
-                    Read more posts by this author.
-                {% endif %}
-            
-        
-        {% endfor %}
         
 
   
@@ -68,22 +72,26 @@
     
 
         
-        
-        {% for author in site.data.authors %}
-        
-            {% if author[1].picture %}
+            
                 
-            {% endif %}
+                
+                {% for author in site.data.authors %}
+                
+                    {% if author[1].picture %}
+                        
+                    {% endif %}
+                    
+                        {{ author[1].name }}
+                        {% if author[1].bio %}
+                            {{ author[1].bio }}
+                        {% else %}
+                            Read more posts by this author.
+                        {% endif %}
+                    
+                
+                {% endfor %}
+                
             
-                {{ author[1].name }}
-                {% if author[1].bio %}
-                    {{ author[1].bio }}
-                {% else %}
-                    Read more posts by this author.
-                {% endif %}
-            
-        
-        {% endfor %}
         
 
   
@@ -122,22 +130,26 @@
     
 
         
-        
-        {% for author in site.data.authors %}
-        
-            {% if author[1].picture %}
+            
                 
-            {% endif %}
+                
+                {% for author in site.data.authors %}
+                
+                    {% if author[1].picture %}
+                        
+                    {% endif %}
+                    
+                        {{ author[1].name }}
+                        {% if author[1].bio %}
+                            {{ author[1].bio }}
+                        {% else %}
+                            Read more posts by this author.
+                        {% endif %}
+                    
+                
+                {% endfor %}
+                
             
-                {{ author[1].name }}
-                {% if author[1].bio %}
-                    {{ author[1].bio }}
-                {% else %}
-                    Read more posts by this author.
-                {% endif %}
-            
-        
-        {% endfor %}
         
 
   
@@ -163,143 +175,80 @@
 
     <div class="site-wrapper">
         <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- < default -->
-<!-- The tag above means: insert everything in this file
-into the {body} of the default.hbs template -->
-
-<!-- The big featured header, it uses blog cover image as a BG if available -->
-<header class="site-header outer">
-    <div class="inner">
-        <nav class="site-nav">
-    <div class="site-nav-left">
-        
-            
-                <a class="site-nav-logo" href="/"><img src="/assets/images/blog-icon.png" alt="바이오메디컬랩@모두의연구소" /></a>
-            
-        
-        
-            <ul class="nav" role="menu">
-    <li class="nav-home" role="menuitem"><a href="/">목록</a></li>
-    <li class="nav-about" role="menuitem"><a href="/about/">소개</a></li>
-</ul>
-
-        
-    </div>
-    <div class="site-nav-right">
-        <div class="social-links">
-            
-            
-        </div>
-        
-    </div>
-</nav>
-
-    </div>
-</header>
-
-<!-- Everything inside the #post tags pulls data from the post -->
-<!-- #post -->
-
-<main id="site-main" class="site-main outer" role="main">
+        <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
 
         <article class="post-full post page no-image">
-
-            <header class="post-full-header">
-                <h1 class="post-full-title">소개</h1>
-            </header>
-
-            
-
-            <section class="post-full-content">
-                <main id="site-main" class="site-main outer" role="main">
-    <div class="inner">
-
-        <!-- #author  -->
-        <!-- Everything inside the #author tags pulls data from the author -->
-        
-        <section class="author-card">
-            
-                <img class="author-profile-image" src="/assets/images/seungil_kim.png" alt="김승일" />
-            
-            <section class="author-card-content">
-                <h4 class="author-card-name"><a href="/author/seungil_kim">김승일</a></h4>
+            <footer class="post-full-footer">
+                <!-- #author  -->
+                <!-- Everything inside the #author tags pulls data from the author -->
                 
-                    <p>연구 빼고 다하는 모두의연구소 대표 겸 연구소장. 모두의연구소를 만들었어요. 딥러닝은 취미로 하고 있습니다.</p>
+                <section class="author-card">
+                    
+                        <img class="author-profile-image" src="/assets/images/seungil_kim.png" alt="김승일" />
+                    
+                    <section class="author-card-content">
+                        <h4 class="author-card-name"><a href="/author/seungil_kim">김승일</a></h4>
+                        
+                            <p>연구 빼고 다하는 모두의연구소 대표 겸 연구소장. 모두의연구소를 만들었어요. 딥러닝은 취미로 하고 있습니다.</p>
+                        
+                    </section>
+                </section>
                 
-            </section>
-        </section>
-        
-        <section class="author-card">
-            
-                <img class="author-profile-image" src="/assets/images/june_oh.jpg" alt="오상준" />
-            
-            <section class="author-card-content">
-                <h4 class="author-card-name"><a href="/author/june_oh">오상준</a></h4>
+                <section class="author-card">
+                    
+                        <img class="author-profile-image" src="/assets/images/june_oh.jpg" alt="오상준" />
+                    
+                    <section class="author-card-content">
+                        <h4 class="author-card-name"><a href="/author/june_oh">오상준</a></h4>
+                        
+                            <p>딥바이오 연구원. 대학에서는 영문학과 철학을 배우고, 이제는 딥러닝을 통한 의료영상분석을 공부하고 있습니다.</p>
+                        
+                    </section>
+                </section>
                 
-                    <p>딥바이오 연구원. 대학에서는 영문학과 철학을 배우고, 이제는 딥러닝을 통한 의료영상분석을 공부하고 있습니다.</p>
+                <section class="author-card">
+                    
+                        <img class="author-profile-image" src="/assets/images/ghost.png" alt="홍규석" />
+                    
+                    <section class="author-card-content">
+                        <h4 class="author-card-name"><a href="/author/hks">홍규석</a></h4>
+                        
+                            <p>Read <a href="/author/hks">more posts</a> by this author.</p>
+                        
+                    </section>
+                </section>
                 
-            </section>
-        </section>
-        
-        <section class="author-card">
-            
-                <img class="author-profile-image" src="/assets/images/ghost.png" alt="홍규석" />
-            
-            <section class="author-card-content">
-                <h4 class="author-card-name"><a href="/author/hks">홍규석</a></h4>
+                <section class="author-card">
+                    
+                        <img class="author-profile-image" src="/assets/images/yspaik.jpg" alt="백영상" />
+                    
+                    <section class="author-card-content">
+                        <h4 class="author-card-name"><a href="/author/yspaik">백영상</a></h4>
+                        
+                            <p>AI Solution Architect. 오랫동안 꿈을 그리는 사람은 마침내 그 꿈을 닮아간다.</p>
+                        
+                    </section>
+                </section>
                 
-                    <p>Read <a href="/author/hks">more posts</a> by this author.</p>
+                <section class="author-card">
+                    
+                        <img class="author-profile-image" src="/assets/images/peter_cha.jpg" alt="차예솔" />
+                    
+                    <section class="author-card-content">
+                        <h4 class="author-card-name"><a href="/author/peter_cha">차예솔</a></h4>
+                        
+                            <p>딥러닝을 공부 할수록, 요리사가 새로운 도구를 사는 것 같은 설레임을 느끼는 중 입니다. 딥러닝은 생업으로 하고 있습니다.</p>
+                        
+                    </section>
+                </section>
                 
-            </section>
-        </section>
-        
-        <section class="author-card">
-            
-                <img class="author-profile-image" src="/assets/images/yspaik.jpg" alt="백영상" />
-            
-            <section class="author-card-content">
-                <h4 class="author-card-name"><a href="/author/yspaik">백영상</a></h4>
-                
-                    <p>AI Solution Architect. 오랫동안 꿈을 그리는 사람은 마침내 그 꿈을 닮아간다.</p>
-                
-            </section>
-        </section>
-        
-        <section class="author-card">
-            
-                <img class="author-profile-image" src="/assets/images/peter_cha.jpg" alt="차예솔" />
-            
-            <section class="author-card-content">
-                <h4 class="author-card-name"><a href="/author/peter_cha">차예솔</a></h4>
-                
-                    <p>딥러닝을 공부 할수록, 요리사가 새로운 도구를 사는 것 같은 설레임을 느끼는 중 입니다. 딥러닝은 생업으로 하고 있습니다.</p>
-                
-            </section>
-        </section>
-        
-        <!-- /author -->
+                <!-- /author -->
+            </footer>
+        </article>
 
   </div>
 </main>
-
-            </section>
-
-        </article>
-
-    </div>
-</main>
-
-<!-- /post -->
-
-<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
-<script>
-$(function() {
-    var $postContent = $(".post-full-content");
-    $postContent.fitVids();
-});
-</script>
-
 
 
         <!-- Previous/next page links - displayed on every page -->
