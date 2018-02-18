@@ -23,6 +23,15 @@ subclass: 'post page'
                 <h1 class="post-full-title">{{ page.title }}</h1>
             </header>
 
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                  <p>
+                    모두의 연구소 바이오메디컬 랩은 smart medical device platform,
+                    <a target="_blank" href="https://www.itsnuh.com/">InTheSmart</a>의 후원을 받고 있습니다.
+                  </p>
+                </div>
+            </section>
+
             <!-- #author  -->
             <!-- Everything inside the #author tags pulls data from the author -->
             {% for author in site.data.authors %}
