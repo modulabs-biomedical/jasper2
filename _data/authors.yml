@@ -48,6 +48,16 @@ peter_cha:
   facebook: False
   twitter: False
   cover: False
+eunsook_kang:
+  username: eunsook_kang
+  name: 강은숙
+  bio: 세상을 이롭게 하기 위한 가치를 추구하는 THE ZILI의 강은숙 입니다. 딥러닝을 연구하고 있습니다.
+  picture: assets/images/eunsook_kang.jpg
+  url: www.thezili.com
+  url_full: http://www.thezili.com
+  facebook: False
+  twitter: False
+  cover: False
 #hannah:
 #  username: hannah
 #  name: Hannah Wolfe
