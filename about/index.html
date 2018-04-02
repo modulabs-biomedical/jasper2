@@ -23,8 +23,8 @@
 
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="모두의연구소 바이오메디컬랩 기술 블로그입니다." />
-    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
-    <link rel="canonical" href="/about/" />
+    <link rel="shortcut icon" href="http://localhost:4000/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="http://localhost:4000/about/" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
@@ -32,8 +32,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="소개" />
     <meta property="og:description" content="{% include site-nav.html %} {{ page.title }} 모두의 연구소 바이오메디컬 랩은 smart medical device platform, InTheSmart의 후원을 받고 있습니다. {% for author in site.data.authors %} {% if author[1].picture %} {% endif %} {{ author[1].name }} {% if author[1].bio %} {{ author[1].bio }} {% else %} Read more posts by this" />
-    <meta property="og:url" content="/about/" />
-    <meta property="og:image" content="/assets/images/blog-cover.jpg" />
+    <meta property="og:url" content="http://localhost:4000/about/" />
+    <meta property="og:image" content="http://localhost:4000/assets/images/blog-cover.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
     <meta property="article:author" content="https://www.facebook.com/" />
     <meta property="article:published_time" content="" />
@@ -41,8 +41,8 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="소개" />
     <meta name="twitter:description" content="{% include site-nav.html %} {{ page.title }} 모두의 연구소 바이오메디컬 랩은 smart medical device platform, InTheSmart의 후원을 받고 있습니다. {% for author in site.data.authors %} {% if author[1].picture %} {% endif %} {{ author[1].name }} {% if author[1].bio %} {{ author[1].bio }} {% else %} Read more posts by this" />
-    <meta name="twitter:url" content="/" />
-    <meta name="twitter:image" content="/assets/images/blog-cover.jpg" />
+    <meta name="twitter:url" content="http://localhost:4000/" />
+    <meta name="twitter:image" content="http://localhost:4000/assets/images/blog-cover.jpg" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="바이오메디컬랩@모두의연구소" />
     <meta name="twitter:site" content="@" />
@@ -57,18 +57,18 @@
     "publisher": {
         "@type": "Organization",
         "name": "바이오메디컬랩@모두의연구소",
-        "logo": "/assets/images/blog-icon.png"
+        "logo": "http://localhost:4000/assets/images/blog-icon.png"
     },
-    "url": "/about/",
+    "url": "http://localhost:4000/about/",
     "image": {
         "@type": "ImageObject",
-        "url": "/assets/images/blog-cover.jpg",
+        "url": "http://localhost:4000/assets/images/blog-cover.jpg",
         "width": 2000,
         "height": 666
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/about/"
+        "@id": "http://localhost:4000/about/"
     },
     "description": "{% include site-nav.html %} {{ page.title }} 모두의 연구소 바이오메디컬 랩은 smart medical device platform, InTheSmart의 후원을 받고 있습니다. {% for author in site.data.authors %} {% if author[1].picture %} {% endif %} {{ author[1].name }} {% if author[1].bio %} {{ author[1].bio }} {% else %} Read more posts by this"
 }
@@ -98,7 +98,7 @@
     <div class="site-nav-left">
         
             
-                <a class="site-nav-logo" href="/"><img src="/assets/images/blog-icon.png" alt="바이오메디컬랩@모두의연구소" /></a>
+                <a class="site-nav-logo" href="http://localhost:4000/"><img src="/assets/images/blog-icon.png" alt="바이오메디컬랩@모두의연구소" /></a>
             
         
         
@@ -232,6 +232,24 @@
             </div>
             <div style="clear: both"></div>
             
+            <div class="post-full-footer">
+                <section class="author-card">
+                    
+                        <img class="author-profile-image" src="/assets/images/eunsook_kang.jpg" alt="강은숙" />
+                    
+                    <section class="author-card-content">
+                        <h4 class="author-card-name"><a href="/author/eunsook_kang">강은숙</a></h4>
+                        
+                            <p>세상을 이롭게 하기 위한 가치를 추구하는 THE ZILI의 강은숙 입니다. 딥러닝을 연구하고 있습니다.</p>
+                        
+                    </section>
+                </section>
+                <div class="post-full-footer-right">
+                    <a class="author-card-button" href="/author/eunsook_kang">Read More</a>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+            
             <!-- /author -->
         </article>
 
@@ -245,7 +263,7 @@
         <!-- The footer at the very bottom of the screen -->
         <footer class="site-footer outer">
             <div class="site-footer-content inner">
-                <section class="copyright"><a href="/">바이오메디컬랩@모두의연구소</a> &copy; 2018</section>
+                <section class="copyright"><a href="http://localhost:4000/">바이오메디컬랩@모두의연구소</a> &copy; 2018</section>
                 <nav class="site-footer-nav">
                     <a href="/">최신글</a>
                     
