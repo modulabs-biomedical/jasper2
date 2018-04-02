@@ -203,8 +203,10 @@ into the {body} of the default.hbs template -->
 
 <p>Contracting Path에서 Pooling되기 전의 Feture들은 Upsampling 시에 Layer와 결합되어 고 해상도 output을 만들어 낼 수 있습니다.</p>
 
-<p>하나 더 중요한 점은! Upsampling시에 많은 수의 Feture Channels를 사용합니다. 
-아래 네트워크 아키텍쳐를 보시면 64 채널부터 시작하여 1024까지 증가 되는것을 볼 수 있습니다.</p>
+<p>하나 더 중요한 점은! 
+많은 수의 Feature Channels를 사용하는데요.
+아래 네트워크 아키텍쳐를 보시면 DownSampling시에는 64 채널 -&gt; 1024채널까지 증가 되고,
+UpSampling시에는 1024 채널 -&gt; 64채널을 사용하고 있습니다.</p>
 
 <p>네트워크는 fully connected layers를 전혀 사용하지 않고, 각 layer에서 convolution만 사용합니다.</p>
 
@@ -212,7 +214,7 @@ into the {body} of the default.hbs template -->
 
 <p><img src="../assets/images/posts/2018-04-02-U_Net/u-net_fig_2.png" alt="u-net_fig_2" /></p>
 
-<p>이 전략은, 전체 U-Net 아키텍쳐에서 input[572X572] -&gt; output[392X392] 로 Segmentation map이 만들어 질때, 위의 그림에서 보는 것과 같이 border부분에서 정보가 없는 빈 부분이 발생하게 되는데요.</p>
+<p>이 전략은, 전체 U-Net 아키텍쳐에서 input[572X572] -&gt; output[388X388] 로 Segmentation map이 만들어 질때, 위의 그림에서 보는 것과 같이 border부분에서 정보가 없는 빈 부분이 발생하게 되는데요.</p>
 
 <p><img src="../assets/images/posts/2018-04-02-U_Net/u-net_fig_1_ex.png" alt="u-net_fig_1_ex" /></p>
 
@@ -271,26 +273,27 @@ into the {body} of the default.hbs template -->
 
 <h4 id="cross-entropy-loss-with-wx">Cross Entropy Loss with w(x)</h4>
 
-<p>각각 정답 픽셀에대한 cross entropy loss에는 $w(\mathbf x)$라는 가중치 값이 추가됩니다. 
-여기서  $p_{l(x)}(x)$의 $l(x)$는 정답 클래스 즉 위 <strong>softmax 수식</strong>에서 정답의 레이블에 해당하는  $k$ 값을 반환하는 함수 입니다.</p>
+<p>각각 정답 픽셀에대한 cross entropy loss에는 <script type="math/tex">w(\mathbf x)</script>라는 가중치 값이 추가됩니다. 
+여기서  <script type="math/tex">p_{l(x)}(x)</script>의 <script type="math/tex">l(x)</script>는 정답 클래스 즉 위 <strong>softmax 수식</strong>에서 정답의 레이블에 해당하는  <script type="math/tex">k</script> 값을 반환하는 함수 입니다.</p>
 
 <p>cross entropy 함수는 정답의 추정값을 log에 사용하기 때문에 이에 해당하는 정답의 확률을 가져오는 것이죠. 
-수식 (1)은 loss 값에 가중치 $w(\mathbf x)$를 곱한 형태이며 이제 우리가 살펴볼 것은 $w(\mathbf x)$입니다.</p>
+수식 (1)은 loss 값에 가중치 <script type="math/tex">w(\mathbf x)</script>를 곱한 형태이며 이제 우리가 살펴볼 것은  <script type="math/tex">w(\mathbf x)</script>입니다.</p>
 
 <p><img src="../assets/images/posts/2018-04-02-U_Net/u-net_cross_entropy.png" alt="1_cross_entropy" /></p>
 
-<p>$w(\mathbf x)$ <strong>구하는 법 :</strong></p>
+<p><script type="math/tex">w(\mathbf x)</script> <strong>구하는 법 :</strong></p>
 
 <p><img src="../assets/images/posts/2018-04-02-U_Net/u-net_wx.png" alt="2_wx" /></p>
 
-<p>$w(\mathbf x)$는 두개의 텀의 합으로 구성됩니다.</p>
+<p><script type="math/tex">w(\mathbf x)</script>는 두개의 텀의 합으로 구성됩니다. <script type="math/tex">w(\mathbf x)</script>는 <script type="math/tex">x</script> 위치의 픽셀에 가중치를 부여하는 함수입니다.</p>
 
-<p>$w_c(\mathbf x)$는 $x$ 위치의 픽셀에 가중치를 부여하는 함수입니다.</p>
+<p><script type="math/tex">w_c(\mathbf x)</script>는  <script type="math/tex">\mathbf x</script> 의 위치에 해당하는 클래스의 빈도수에 따라 값이 결정됩니다.</p>
 
-<p>$w_c(\mathbf x)$는  $\mathbf x$ 의 위치에 해당하는 클래스의 빈도수에 따라 값이 결정됩니다. 
-즉 학습데이터에서 $\mathbf x$ 픽셀이 background일 경우가 많은지 foreground일 경우가 많은지의 빈도수에 따라 결정된다고 보시면 됩니다. 
-그 뒤의 exp 텀은 $d_1$, $d_2$ 함수를 포함하는데 $d_1$ 은 $\mathbf x$ 에서 가장 가까운 세포까지의 거리이고 $d_2$는 두번째로 가까운 세포까지의 거리를 계산하는 함수입니다. 
-즉  $\mathbf x$는 세포사이에 존재하는 픽셀이며 두 세포사이의 간격이 좁을 수록 weight를 큰 값으로 두 세포 사이가 넓을 수록 weight를 작은 값으로 갖게 됩니다. 이는 그림 3(d) 를 보시면 명확하게 확인하실 수 있습니다.</p>
+<p>즉 학습데이터에서 <script type="math/tex">\mathbf x</script> 픽셀이 background일 경우가 많은지 foreground일 경우가 많은지의 빈도수에 따라 결정된다고 보시면 됩니다.</p>
+
+<p>그 뒤의 exp 텀은 <script type="math/tex">d_1</script>, <script type="math/tex">d_2</script> 함수를 포함하는데 <script type="math/tex">d_1</script> 은 <script type="math/tex">\mathbf x</script> 에서 가장 가까운 세포까지의 거리이고 <script type="math/tex">d_2</script>는 두번째로 가까운 세포까지의 거리를 계산하는 함수입니다.</p>
+
+<p>즉  <script type="math/tex">\mathbf x</script>는 세포사이에 존재하는 픽셀이며 두 세포사이의 간격이 좁을 수록 weight를 큰 값으로 두 세포 사이가 넓을 수록 weight를 작은 값으로 갖게 됩니다. 이는 그림 3(d) 를 보시면 명확하게 확인하실 수 있습니다.</p>
 
 <p>네트워크 파라미터의 초기화는 He 초기화 방법을 적용하였습니다.</p>
 
@@ -372,6 +375,8 @@ into the {body} of the default.hbs template -->
             
 
         </article>
+	<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+	</script>
 
     </div>
 </main>
