@@ -11,7 +11,7 @@
 
 
 
-    <title>Learning Deconvolution Network for Semantic Segmentation</title>
+    <title>FusionNet</title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles'n'Scripts -->
@@ -24,26 +24,26 @@
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="모두의연구소 바이오메디컬랩 기술 블로그입니다." />
     <link rel="shortcut icon" href="http://localhost:4000/assets/images/favicon.png" type="image/png" />
-    <link rel="canonical" href="http://localhost:4000/Learning_Deconvolution_Network_for_Semantic_Segmentation" />
+    <link rel="canonical" href="http://localhost:4000/FusionNet" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
     <meta property="og:site_name" content="바이오메디컬랩@모두의연구소" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Learning Deconvolution Network for Semantic Segmentation" />
-    <meta property="og:description" content="Noh, H., Hong, S., and Han, B. Learning Deconvolution Network for Semantic Segmentation. ICCV, 2015. 이번 논문은 앞서 다뤘던 Fully Convolutional Networks와 같은 년도(2015)에 다른 학회(FCN은 CVPR, 본 논문은 ICCV)에 발표된 논문입니다. FCN이나 이후에 다룰 UNet보다는 다소 인기가 적었지만, FCN이 가진 한계를 잘 짚어주셨다는 점에서 공부에 도움이 되었습니다. FCN의 문제점" />
-    <meta property="og:url" content="http://localhost:4000/Learning_Deconvolution_Network_for_Semantic_Segmentation" />
-    <meta property="og:image" content="http://localhost:4000/assets/images/posts/2018-01-03-Learning_Deconvolution_Network_for_Semantic_Segmentation/fig2.jpg" />
+    <meta property="og:title" content="FusionNet" />
+    <meta property="og:description" content="FusionNet FusionNet은 U-Net처럼 Semantic Segmentation에 활용 할 수 있는 모델입니다. 이름이 FusionNet인 이유는 아마도 Encoder에 있는 Layer를 가져와 Decoder에 결합(Fusion)하는 방법이 이 모델에 가장 특징적인 부분이기 때문인 것 같습니다. U-Net과 유사한 부분이 많기 때문에 블로그에 U-Net글을 읽으시면 많은 도움이 될 것 같습니다. U-Net (by 강은숙) FusionNet 이란? FusionNet은 Connectomics(뇌신경 연결지도를" />
+    <meta property="og:url" content="http://localhost:4000/FusionNet" />
+    <meta property="og:image" content="http://localhost:4000/assets/images/posts/2018-05-04-Fusion_Net/fusion-net_3.png" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
     <meta property="article:author" content="https://www.facebook.com/" />
-    <meta property="article:published_time" content="2018-01-03T09:00:00+09:00" />
-    <meta property="article:modified_time" content="2018-01-03T09:00:00+09:00" />
+    <meta property="article:published_time" content="2018-05-04T09:00:00+09:00" />
+    <meta property="article:modified_time" content="2018-05-04T09:00:00+09:00" />
     <meta property="article:tag" content="논문 리뷰" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Learning Deconvolution Network for Semantic Segmentation" />
-    <meta name="twitter:description" content="Noh, H., Hong, S., and Han, B. Learning Deconvolution Network for Semantic Segmentation. ICCV, 2015. 이번 논문은 앞서 다뤘던 Fully Convolutional Networks와 같은 년도(2015)에 다른 학회(FCN은 CVPR, 본 논문은 ICCV)에 발표된 논문입니다. FCN이나 이후에 다룰 UNet보다는 다소 인기가 적었지만, FCN이 가진 한계를 잘 짚어주셨다는 점에서 공부에 도움이 되었습니다. FCN의 문제점" />
+    <meta name="twitter:title" content="FusionNet" />
+    <meta name="twitter:description" content="FusionNet FusionNet은 U-Net처럼 Semantic Segmentation에 활용 할 수 있는 모델입니다. 이름이 FusionNet인 이유는 아마도 Encoder에 있는 Layer를 가져와 Decoder에 결합(Fusion)하는 방법이 이 모델에 가장 특징적인 부분이기 때문인 것 같습니다. U-Net과 유사한 부분이 많기 때문에 블로그에 U-Net글을 읽으시면 많은 도움이 될 것 같습니다. U-Net (by 강은숙) FusionNet 이란? FusionNet은 Connectomics(뇌신경 연결지도를" />
     <meta name="twitter:url" content="http://localhost:4000/" />
-    <meta name="twitter:image" content="http://localhost:4000/assets/images/posts/2018-01-03-Learning_Deconvolution_Network_for_Semantic_Segmentation/fig2.jpg" />
+    <meta name="twitter:image" content="http://localhost:4000/assets/images/posts/2018-05-04-Fusion_Net/fusion-net_3.png" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="바이오메디컬랩@모두의연구소" />
     <meta name="twitter:label2" content="Filed under" />
@@ -62,18 +62,18 @@
         "name": "바이오메디컬랩@모두의연구소",
         "logo": "http://localhost:4000/assets/images/blog-icon.png"
     },
-    "url": "http://localhost:4000/Learning_Deconvolution_Network_for_Semantic_Segmentation",
+    "url": "http://localhost:4000/FusionNet",
     "image": {
         "@type": "ImageObject",
-        "url": "http://localhost:4000/assets/images/posts/2018-01-03-Learning_Deconvolution_Network_for_Semantic_Segmentation/fig2.jpg",
+        "url": "http://localhost:4000/assets/images/posts/2018-05-04-Fusion_Net/fusion-net_3.png",
         "width": 2000,
         "height": 666
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "http://localhost:4000/Learning_Deconvolution_Network_for_Semantic_Segmentation"
+        "@id": "http://localhost:4000/FusionNet"
     },
-    "description": "Noh, H., Hong, S., and Han, B. Learning Deconvolution Network for Semantic Segmentation. ICCV, 2015. 이번 논문은 앞서 다뤘던 Fully Convolutional Networks와 같은 년도(2015)에 다른 학회(FCN은 CVPR, 본 논문은 ICCV)에 발표된 논문입니다. FCN이나 이후에 다룰 UNet보다는 다소 인기가 적었지만, FCN이 가진 한계를 잘 짚어주셨다는 점에서 공부에 도움이 되었습니다. FCN의 문제점"
+    "description": "FusionNet FusionNet은 U-Net처럼 Semantic Segmentation에 활용 할 수 있는 모델입니다. 이름이 FusionNet인 이유는 아마도 Encoder에 있는 Layer를 가져와 Decoder에 결합(Fusion)하는 방법이 이 모델에 가장 특징적인 부분이기 때문인 것 같습니다. U-Net과 유사한 부분이 많기 때문에 블로그에 U-Net글을 읽으시면 많은 도움이 될 것 같습니다. U-Net (by 강은숙) FusionNet 이란? FusionNet은 Connectomics(뇌신경 연결지도를"
 }
     </script>
 
@@ -86,7 +86,7 @@
     </script> -->
 
     <meta name="generator" content="Jekyll 3.6.2" />
-    <link rel="alternate" type="application/rss+xml" title="Learning Deconvolution Network for Semantic Segmentation" href="/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="FusionNet" href="/feed.xml" />
 
 
 </head>
@@ -138,7 +138,7 @@ into the {body} of the default.hbs template -->
 
             <header class="post-full-header">
                 <section class="post-full-meta">
-                    <time class="post-full-meta-date" datetime=" 3 January 2018">2018년 01월 03일</time>
+                    <time class="post-full-meta-date" datetime=" 4 May 2018">2018년 05월 04일</time>
                     
                         <span class="date-divider">/</span>
                         
@@ -148,72 +148,98 @@ into the {body} of the default.hbs template -->
                         
                     
                 </section>
-                <h1 class="post-full-title">Learning Deconvolution Network for Semantic Segmentation</h1>
+                <h1 class="post-full-title">FusionNet</h1>
             </header>
 
             
-            <figure class="post-full-image" style="background-image: url(/assets/images/posts/2018-01-03-Learning_Deconvolution_Network_for_Semantic_Segmentation/fig2.jpg)">
+            <figure class="post-full-image" style="background-image: url(/assets/images/posts/2018-05-04-Fusion_Net/fusion-net_3.png)">
             </figure>
             
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <p><a href="http://arxiv.org/abs/1505.04366">Noh, H., Hong, S., and Han, B. Learning Deconvolution Network for Semantic Segmentation. ICCV, 2015.</a></p>
+                    <h1 id="fusionnet"><strong>FusionNet</strong></h1>
 
-<p>이번 논문은 <a href="https://modulabs-biomedical.github.io/FCN">앞서 다뤘던 Fully Convolutional Networks</a>와 같은 년도(2015)에 다른 학회(FCN은 CVPR, 본 논문은 ICCV)에 발표된 논문입니다. FCN이나 이후에 다룰 UNet보다는 다소 인기가 적었지만, FCN이 가진 한계를 잘 짚어주셨다는 점에서 공부에 도움이 되었습니다.</p>
+<p>FusionNet은 U-Net처럼 Semantic Segmentation에 활용 할 수 있는 모델입니다.</p>
 
-<h2 id="fcn의-문제점">FCN의 문제점</h2>
+<p>이름이 FusionNet인 이유는 아마도 Encoder에 있는 Layer를 가져와 Decoder에 결합(Fusion)하는 방법이 이 모델에 가장 특징적인 부분이기 때문인 것 같습니다.</p>
 
-<h3 id="크기에-약하다">크기에 약하다</h3>
+<p>U-Net과 유사한 부분이 많기 때문에 블로그에 U-Net글을 읽으시면 많은 도움이 될 것 같습니다. 
+<a href="https://modulabs-biomedical.github.io/U_Net">U-Net (by 강은숙)</a></p>
 
-<p><img src="assets/images/posts/2018-01-03-Learning_Deconvolution_Network_for_Semantic_Segmentation/fig1.jpg" alt="" /></p>
+<h3 id="fusionnet-이란">FusionNet 이란?</h3>
 
-<p>위의 예시들처럼 FCN의 추론 결과를 보면, 대상 물체가 너무 큰 경우(a)에는 파편화되고, 너무 작은 경우(b)에는 배경으로 무시되는 경향이 있습니다. FCN에서는 receptive field(상위 레이어의 한 지점에서 참조하는 하위 레이어의 영역)의 크기가 고정되어, 단일 배율(scale)만을 학습하는 것이 이 문제의 원인이라고 본 논문은 지적합니다. 여러 레이어의 결과를 조합하는 skip 구조가 이러한 현상을 완화시켜주기는 하지만, 근본적인 해법은 아니라는 주장입니다.</p>
+<p><strong>FusionNet</strong>은 Connectomics(뇌신경 연결지도를 작성하고 분석하는 신경과학의 일종) 데이터에서 신경구조를 Segmentation 할 목적으로 만든 딥러닝 모델입니다.</p>
 
-<h3 id="디테일에-약하다">디테일에 약하다</h3>
+<p>논문발표일(2016.12.26) 기준에서 최신의 기술인 Semantic Segmentation과 Residual Neural Networks를 사용 한 모델이라고 하네요.</p>
 
-<p><img src="assets/images/posts/2018-01-03-Learning_Deconvolution_Network_for_Semantic_Segmentation/fig5.jpg" alt="" /></p>
+<p>이 논문에서는 FusionNet을 Electron Microscopy (EM) 이미지에서 Cell Membrane과 Cell Body의 Segmentation에 적용하였습니다.</p>
 
-<p>FCN이 비록 기존 기법들에 비해 큰 발전을 이루었지만, 세부적인 영역을 찾아내는 데에서는 아직 개선의 여지가 있다고 이 논문은 보고 있습니다. FCN에서는 deconvolution에 들어가는 입력부터 이미 세부 묘사가 떨어지고, deconvolution 과정 자체도 충분히 깊지 않고 너무 단순하다고 말합니다.</p>
+<h3 id="모델의-특징">모델의 특징</h3>
 
-<h2 id="논문의-해법">논문의 해법</h2>
+<p>이전에 connectomics에서 automatic image segmentation을 할 때 보통 <strong>CNN(Convolutional Neural Network)</strong>에 기반 한 <strong>patch-based pixel-wise classification</strong>을 사용했는데 EM 데이터가 용량이 상당히 크기 때문에 처리하기 위한 비용이 많이 들어간다는 문제가 있었습니다.</p>
 
-<h3 id="네트워크-구조">네트워크 구조</h3>
+<p>( 여기서 비용이란 딥러닝을 하기 위한 하드웨어 구입, 전기 사용, 시간 등을 말합니다. )</p>
 
-<p><img src="assets/images/posts/2018-01-03-Learning_Deconvolution_Network_for_Semantic_Segmentation/fig2.jpg" alt="" /></p>
+<p>Encoding, Decoding을 사용한 <strong>FCN(fully Convolution Neural Network)</strong>계열의 모델의 경우 연산량을 줄일 수 있어 비용을 절감 할 수 있는데 이것에 대표적인 모델이 <strong>U-Net</strong>입니다.</p>
 
-<p>부족하면 더 넣으면 됩니다. FCN에서는 CNN의 결과를 입력 이미지의 원래 차원으로 확대(upsampling)하는 데에 deconvolution을 사용했지만, 이 논문에서는 deconvolution 시 차원을 유지하는 방법으로, CNN(논문에서 사용한 건 VGG-16)의 convolution만큼 레이어 숫자를 늘렸습니다. 결과적으로 거울에 비춘 모양이 되었습니다.</p>
+<p>하지만 <strong>U-Net</strong>의 방법이 데이터로부터 다중의 맥락 정보를 학습할 수 있지만 <strong>Gradient Vanising</strong> 문제가 발생하기 때문에 깊은 네트워크를 만드는 것은 제한적이었습니다.</p>
 
-<p><img src="assets/images/posts/2018-01-03-Learning_Deconvolution_Network_for_Semantic_Segmentation/fig3.jpg" alt="" /></p>
+<p><strong>FusionNet</strong>은 <strong>residual layers</strong>와 <strong>summation-based skip connection</strong>을 사용하여 <strong>U-Net</strong>의 단점을 보완한 모델입니다.</p>
 
-<p>CNN으로 인해 원래 이미지보다 축소된 차원 크기는 unpooling으로 복원합니다. 여기서 unpooling이란 CNN의 max pooling 시의 위치 정보를 기억했다가, 원래 위치로 그대로 복원해주는 작업입니다.</p>
+<p><strong>residual layer</strong></p>
 
-<p><img src="assets/images/posts/2018-01-03-Learning_Deconvolution_Network_for_Semantic_Segmentation/fig4.jpg" alt="" /></p>
+<blockquote>
+  <p>이전에 계산된 값을 뒷부분에도 연결시켜서 모델이 깊어져도 값을 잊어버리지 않게 해주는 역할을 함 (vanishing gradient 문제 해결)</p>
+</blockquote>
 
-<p>그 효과는 위의 그림과 같습니다. (b)에서 (c)로 갈 때의 unpooling에 의해, 해상도가 커지는 대신 신호가 흩어져서 희소(sparse)해집니다. 이것을 (c)에서 (d)로 deconvolution을 거치면, 디테일을 살려내면서 신호가 고르게 밀집(dense)됩니다. 이러한 과정이 반복되자 노이즈도 점차 자연스럽게 사라지는 것을 볼 수 있습니다.</p>
+<p><strong>summation-based skip connections</strong></p>
 
-<h3 id="학습-및-추론-방식">학습 및 추론 방식</h3>
+<blockquote>
+  <p>층을 건너띄워서 연결, 건너띄워 넘어온 층과 이전의 층을 더해서(합계산) 뒤에 층으로 넘김</p>
+</blockquote>
 
-<p><img src="assets/images/posts/2018-01-03-Learning_Deconvolution_Network_for_Semantic_Segmentation/edge-box.jpg" alt="" /></p>
+<h5 id="pytorch-code-예시-summation-based-skip-connections">Pytorch Code 예시 (summation-based skip connections)</h5>
+<p><img src="../assets/images/posts/2018-05-04-Fusion_Net/fusion-net_1.png" alt="fusion-net_1" /></p>
 
-<p>단일 데이터셋에서 다양한 크기의 사례들을 학습하기 위해, 논문에서는 <a href="">edge-box</a>라는 object proposal 알고리즘을 사용하여 무언가 있을만한 영역을 다양한 크기의 상자로 골라냅니다. 학습 시에는 우선 실제 정답이 가운데에 들어가도록 잘라낸(crop) 이미지들로 1차 학습을, 그 다음 edge-box의 결과물 중 실제 정답과 잘 겹치는 것들을 활용하여 조금 더 심도있는 2차 학습을 진행합니다.</p>
+<h4 id="u-net과-비교하여-가장-특징적인-차이">U-Net과 비교하여 가장 특징적인 차이</h4>
 
-<p><img src="assets/images/posts/2018-01-03-Learning_Deconvolution_Network_for_Semantic_Segmentation/fig6.jpg" alt="" /></p>
+<p><strong>U-net</strong>에서는 긴 skip connection을 통해 feature map을 <strong>이어 붙임 (Concatenating)</strong> 
+<strong>FusionNet</strong>에서는 긴 skip connection을 통해 feature map의 <strong>값을 더함</strong> + 짧은 skip connection도 encoding, decoding의 각 step에서 사용</p>
 
-<p>이렇게 학습에 사용된 edge-box는 추론 시에도 사용되는데, 추론 시 사용하는 object proposal의 수(상자 수)를 증가시킬 수록 성능은 좋아진다고 합니다. 물론 그만큼 계산량과 시간은 늘어납니다.</p>
+<p>이 방법이 실제로 좋은 퍼포먼스를 보여서 <strong>ISBI 2012 EM segmentation challenge</strong>에서 <strong>1등</strong> 했다고 합니다.
+(물론 FusionNet이 100% 기여했다고 까지는 볼 수 없을 것 같습니다.)</p>
 
-<h2 id="결과">결과</h2>
+<p>OverFitting 해결을 위한 <strong>Data enrichment</strong> (이미지 데이터에 다양한 변형을 가하거나 노이즈를 추가하는 등의 방법을 사용)를 사용 한 것도 좋은 퍼포먼스를 내는데 도움이 되었을 것 입니다.</p>
 
-<p><img src="assets/images/posts/2018-01-03-Learning_Deconvolution_Network_for_Semantic_Segmentation/fig7.jpg" alt="" /></p>
+<p><img src="../assets/images/posts/2018-05-04-Fusion_Net/fusion-net_2.png" alt="fusion-net_2" /></p>
 
-<p>이렇게 세심하게 설계되고 학습된 결과는 FCN이 실수하는 물체들도 보다 세밀하게 잘 찾아내는 모습을 보입니다. 다만 FCN이 잘 맞추는 곳에서 실수를 할 때도 있는데, 결국 둘을 앙상블하여 conditional random field로 후처리하면 두 가지 모델을 모두 뛰어넘게 되어, FCN과 상호 보완적인 관계에 있다고 논문은 맺습니다.</p>
+<p>정말 U-Net보다 결과가 좋네요!!!</p>
 
-<h2 id="추가-참고-문헌">추가 참고 문헌</h2>
+<h3 id="모델-아키텍처">모델 아키텍처</h3>
 
-<ul>
-  <li><a href="http://www.matthewzeiler.com/wp-content/uploads/2017/07/cvpr2010.pdf">Zeiler, M. D. et al. Deconvolutional Networks. CVPR, 2010.</a></li>
-  <li><a href="https://www.microsoft.com/en-us/research/publication/edge-boxes-locating-object-proposals-from-edges/">Zitnick, L. and Dollar, P. Edge Boxes: Locating Object Proposals from Edges. ECCV, 2014.</a></li>
-</ul>
+<p><img src="../assets/images/posts/2018-05-04-Fusion_Net/fusion-net_3.png" alt="fusion-net_3" /></p>
+
+<p><strong>Encoding Path</strong>	-&gt;	640X640부터 40X40 까지 the features of interest를 검출</p>
+
+<p><strong>Decoding Path</strong>	-&gt;	40X40부터 640X640까지 synthesis를 예측</p>
+
+<p><strong>녹색 블록</strong>	-&gt;	regular convolutional layer, ReLu 활성함수, batch normalization으로 구성</p>
+
+<p><strong>보라색 블록</strong>	-&gt;	3개의 convolutional block으로 구성되는데 마지막 블록3에는 블록1이 블록2와 skip해서 더해진 residual layer가 연결 됨</p>
+
+<p><strong>파란색 블록</strong>	-&gt;	maxpooling layer로써 encoding path에서 feature 압축을 위한 downsampling을 하기 위해 사용</p>
+
+<p><strong>빨간색 블록</strong>	-&gt;	deconvolutional layer로 decoding path에서 interpolation을 사용한 upsampling을 하기 위해 사용</p>
+
+<p><img src="../assets/images/posts/2018-05-04-Fusion_Net/fusion-net_4.png" alt="fusion-net_4" /></p>
+
+<h3 id="참고자료">참고자료</h3>
+
+<p><a href="https://arxiv.org/ftp/arxiv/papers/1612/1612.05360.pdf">FusionNet : A deep fully residual convolutional neural network for image segmentation in connectomics</a></p>
+
+<p>이상으로 FusionNet에 대한 글을 마칩니다. 수정해야 할 내용이 있다면 꼭 말씀 부탁드립니다.
+부족한 글이지만 끝까지 읽어주셔서 감사합니다!!!</p>
 
                 </div>
             </section>
@@ -228,30 +254,30 @@ into the {body} of the default.hbs template -->
                     
                 
                     
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
                         <section class="author-card">
                             
-                                <img class="author-profile-image" src="/assets/images/june_oh.jpg" alt="june_oh" />
+                                <img class="author-profile-image" src="/assets/images/kyungmo_kim.jpeg" alt="kyungmo_kim" />
                             
                             <section class="author-card-content">
-                                <h4 class="author-card-name"><a href="/author/june_oh">오상준</a></h4>
+                                <h4 class="author-card-name"><a href="/author/kyungmo_kim">김경모</a></h4>
                                 
-                                    <p>딥바이오 연구원. 대학에서는 영문학과 철학을 배우고, 이제는 딥러닝을 통한 의료영상분석을 공부하고 있습니다.</p>
+                                    <p>딥러닝을 연구하고 있습니다.</p>
                                 
                             </section>
                         </section>
                         <div class="post-full-footer-right">
-                            <a class="author-card-button" href="/author/june_oh">Read More</a>
+                            <a class="author-card-button" href="/author/kyungmo_kim">Read More</a>
                         </div>
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
                     
                 
                 <!-- /author  -->
@@ -297,11 +323,6 @@ into the {body} of the default.hbs template -->
                                 
                                   
                                     
-                                        
-                                        
-                                            <li><a href="/FusionNet">FusionNet</a></li>
-                                        
-                                    
                                   
                                 
                                   
@@ -316,6 +337,11 @@ into the {body} of the default.hbs template -->
                                   
                                 
                                   
+                                    
+                                        
+                                        
+                                            <li><a href="/Learning_Deconvolution_Network_for_Semantic_Segmentation">Learning Deconvolution Network for Semantic Segmentation</a></li>
+                                        
                                     
                                   
                                 
@@ -343,70 +369,18 @@ into the {body} of the default.hbs template -->
 
             <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
             
-                
-    <article class="post-card post-template">
-        
-            <a class="post-card-image-link" href="/Bias_vs_Variance">
-                <div class="post-card-image" style="background-image: url(/assets/images/posts/2018-01-25-Bias_vs_Variance/3.jpg)"></div>
-            </a>
-        
-        <div class="post-card-content">
-            <a class="post-card-content-link" href="/Bias_vs_Variance">
-                <header class="post-card-header">
-                    
-                        
-                            
-                                <span class="post-card-tags">개념 정리</span>
-                            
-                        
-                    
-
-                    <h2 class="post-card-title">Bias vs. Variance 개념 정리</h2>
-                </header>
-                <section class="post-card-excerpt">
-                    <p>이 글에서 bias와 variance에 대해 살펴보려고 합니다. bias와 variance는 이미 많은 글이나 블로그에서 개념적으로 잘 설명되어 있습니다. 그럼에도 불구하고 다시 정리해보는 이유는 개념적으로 어느정도 이해는 되는데 좀 더 자세하게 보려고 하면, 블로그들의 예제들</p>
-                </section>
-            </a>
-            <footer class="post-card-meta">
-                
-                    
-                
-                    
-                
-                    
-                        
-                        <img class="author-profile-image" src="/assets/images/ghost.png" alt="홍규석" />
-                        
-                        <span class="post-card-author">
-                            <a href="/author/hks/">홍규석</a>
-                        </span>
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-            </footer>
-        </div>
-    </article>
-
-            
 
             <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
             
                 
     <article class="post-card post-template">
         
-            <a class="post-card-image-link" href="/FCN">
-                <div class="post-card-image" style="background-image: url(/assets/images/posts/2017-12-21-FCN/fig3.jpg)"></div>
+            <a class="post-card-image-link" href="/U_Net">
+                <div class="post-card-image" style="background-image: url(/assets/images/posts/2018-04-02-U_Net/u-net.png)"></div>
             </a>
         
         <div class="post-card-content">
-            <a class="post-card-content-link" href="/FCN">
+            <a class="post-card-content-link" href="/U_Net">
                 <header class="post-card-header">
                     
                         
@@ -416,31 +390,31 @@ into the {body} of the default.hbs template -->
                         
                     
 
-                    <h2 class="post-card-title">Fully Convolutional Networks for Semantic Segmentation</h2>
+                    <h2 class="post-card-title">U-Net</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>논문 링크 : Fully Convolutional Networks for Semantic Segmentation Introduction Semantic Segmentation는 영상을 pixel단위로 어떤 object인지 classification 하는 것이라고 볼 수 있습니다. (언제나 강력추천하는) cs231n 강의 자료를 보시면 쉽게 잘 나와 있죠. Figure</p>
+                    <p>논문 링크 : U-Net: Convolutional Networks for Biomedical Image Segmentation 이번 블로그의 내용은 Semantic Segmentation의 가장 기본적으로 많이 쓰이는 모델인 U-Net에 대한 내용입니다. U-Net의 이름은 그 자체로 모델의 형태가 U자로 되어 있어서 생긴</p>
                 </section>
             </a>
             <footer class="post-card-meta">
                 
                     
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
                         
-                        <img class="author-profile-image" src="/assets/images/seungil_kim.png" alt="김승일" />
+                        <img class="author-profile-image" src="/assets/images/eunsook_kang.jpg" alt="강은숙" />
                         
                         <span class="post-card-author">
-                            <a href="/author/seungil_kim/">김승일</a>
+                            <a href="/author/eunsook_kang/">강은숙</a>
                         </span>
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
                     
                 
                     
@@ -466,18 +440,18 @@ into the {body} of the default.hbs template -->
         </a>
     </div>
     <span class="floating-header-divider">&mdash;</span>
-    <div class="floating-header-title">Learning Deconvolution Network for Semantic Segmentation</div>
+    <div class="floating-header-title">FusionNet</div>
     <div class="floating-header-share">
         <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
 </svg>
 </div>
-        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Learning+Deconvolution+Network+for+Semantic+Segmentation&amp;url=https://myJekyll.github.io/jasper2/Learning_Deconvolution_Network_for_Semantic_Segmentation"
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=FusionNet&amp;url=https://myJekyll.github.io/jasper2/FusionNet"
             onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
 
         </a>
-        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://myJekyll.github.io/jasper2/Learning_Deconvolution_Network_for_Semantic_Segmentation"
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://myJekyll.github.io/jasper2/FusionNet"
             onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
 

@@ -28,6 +28,115 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>FusionNet</title>
+	  <link>http://localhost:4000/FusionNet</link>
+		
+				
+		
+				
+		
+				
+		
+				
+		
+				
+		
+				
+		
+				
+						<author>김경모</author>
+				
+		
+	  <pubDate>2018-05-04T09:00:00+09:00</pubDate>
+	  <guid>http://localhost:4000/FusionNet</guid>
+	  <description><![CDATA[
+	     <h1 id="fusionnet"><strong>FusionNet</strong></h1>
+
+<p>FusionNet은 U-Net처럼 Semantic Segmentation에 활용 할 수 있는 모델입니다.</p>
+
+<p>이름이 FusionNet인 이유는 아마도 Encoder에 있는 Layer를 가져와 Decoder에 결합(Fusion)하는 방법이 이 모델에 가장 특징적인 부분이기 때문인 것 같습니다.</p>
+
+<p>U-Net과 유사한 부분이 많기 때문에 블로그에 U-Net글을 읽으시면 많은 도움이 될 것 같습니다. 
+<a href="https://modulabs-biomedical.github.io/U_Net">U-Net (by 강은숙)</a></p>
+
+<h3 id="fusionnet-이란">FusionNet 이란?</h3>
+
+<p><strong>FusionNet</strong>은 Connectomics(뇌신경 연결지도를 작성하고 분석하는 신경과학의 일종) 데이터에서 신경구조를 Segmentation 할 목적으로 만든 딥러닝 모델입니다.</p>
+
+<p>논문발표일(2016.12.26) 기준에서 최신의 기술인 Semantic Segmentation과 Residual Neural Networks를 사용 한 모델이라고 하네요.</p>
+
+<p>이 논문에서는 FusionNet을 Electron Microscopy (EM) 이미지에서 Cell Membrane과 Cell Body의 Segmentation에 적용하였습니다.</p>
+
+<h3 id="모델의-특징">모델의 특징</h3>
+
+<p>이전에 connectomics에서 automatic image segmentation을 할 때 보통 <strong>CNN(Convolutional Neural Network)</strong>에 기반 한 <strong>patch-based pixel-wise classification</strong>을 사용했는데 EM 데이터가 용량이 상당히 크기 때문에 처리하기 위한 비용이 많이 들어간다는 문제가 있었습니다.</p>
+
+<p>( 여기서 비용이란 딥러닝을 하기 위한 하드웨어 구입, 전기 사용, 시간 등을 말합니다. )</p>
+
+<p>Encoding, Decoding을 사용한 <strong>FCN(fully Convolution Neural Network)</strong>계열의 모델의 경우 연산량을 줄일 수 있어 비용을 절감 할 수 있는데 이것에 대표적인 모델이 <strong>U-Net</strong>입니다.</p>
+
+<p>하지만 <strong>U-Net</strong>의 방법이 데이터로부터 다중의 맥락 정보를 학습할 수 있지만 <strong>Gradient Vanising</strong> 문제가 발생하기 때문에 깊은 네트워크를 만드는 것은 제한적이었습니다.</p>
+
+<p><strong>FusionNet</strong>은 <strong>residual layers</strong>와 <strong>summation-based skip connection</strong>을 사용하여 <strong>U-Net</strong>의 단점을 보완한 모델입니다.</p>
+
+<p><strong>residual layer</strong></p>
+
+<blockquote>
+  <p>이전에 계산된 값을 뒷부분에도 연결시켜서 모델이 깊어져도 값을 잊어버리지 않게 해주는 역할을 함 (vanishing gradient 문제 해결)</p>
+</blockquote>
+
+<p><strong>summation-based skip connections</strong></p>
+
+<blockquote>
+  <p>층을 건너띄워서 연결, 건너띄워 넘어온 층과 이전의 층을 더해서(합계산) 뒤에 층으로 넘김</p>
+</blockquote>
+
+<h5 id="pytorch-code-예시-summation-based-skip-connections">Pytorch Code 예시 (summation-based skip connections)</h5>
+<p><img src="../assets/images/posts/2018-05-04-Fusion_Net/fusion-net_1.png" alt="fusion-net_1" /></p>
+
+<h4 id="u-net과-비교하여-가장-특징적인-차이">U-Net과 비교하여 가장 특징적인 차이</h4>
+
+<p><strong>U-net</strong>에서는 긴 skip connection을 통해 feature map을 <strong>이어 붙임 (Concatenating)</strong> 
+<strong>FusionNet</strong>에서는 긴 skip connection을 통해 feature map의 <strong>값을 더함</strong> + 짧은 skip connection도 encoding, decoding의 각 step에서 사용</p>
+
+<p>이 방법이 실제로 좋은 퍼포먼스를 보여서 <strong>ISBI 2012 EM segmentation challenge</strong>에서 <strong>1등</strong> 했다고 합니다.
+(물론 FusionNet이 100% 기여했다고 까지는 볼 수 없을 것 같습니다.)</p>
+
+<p>OverFitting 해결을 위한 <strong>Data enrichment</strong> (이미지 데이터에 다양한 변형을 가하거나 노이즈를 추가하는 등의 방법을 사용)를 사용 한 것도 좋은 퍼포먼스를 내는데 도움이 되었을 것 입니다.</p>
+
+<p><img src="../assets/images/posts/2018-05-04-Fusion_Net/fusion-net_2.png" alt="fusion-net_2" /></p>
+
+<p>정말 U-Net보다 결과가 좋네요!!!</p>
+
+<h3 id="모델-아키텍처">모델 아키텍처</h3>
+
+<p><img src="../assets/images/posts/2018-05-04-Fusion_Net/fusion-net_3.png" alt="fusion-net_3" /></p>
+
+<p><strong>Encoding Path</strong>	-&gt;	640X640부터 40X40 까지 the features of interest를 검출</p>
+
+<p><strong>Decoding Path</strong>	-&gt;	40X40부터 640X640까지 synthesis를 예측</p>
+
+<p><strong>녹색 블록</strong>	-&gt;	regular convolutional layer, ReLu 활성함수, batch normalization으로 구성</p>
+
+<p><strong>보라색 블록</strong>	-&gt;	3개의 convolutional block으로 구성되는데 마지막 블록3에는 블록1이 블록2와 skip해서 더해진 residual layer가 연결 됨</p>
+
+<p><strong>파란색 블록</strong>	-&gt;	maxpooling layer로써 encoding path에서 feature 압축을 위한 downsampling을 하기 위해 사용</p>
+
+<p><strong>빨간색 블록</strong>	-&gt;	deconvolutional layer로 decoding path에서 interpolation을 사용한 upsampling을 하기 위해 사용</p>
+
+<p><img src="../assets/images/posts/2018-05-04-Fusion_Net/fusion-net_4.png" alt="fusion-net_4" /></p>
+
+<h3 id="참고자료">참고자료</h3>
+
+<p><a href="https://arxiv.org/ftp/arxiv/papers/1612/1612.05360.pdf">FusionNet : A deep fully residual convolutional neural network for image segmentation in connectomics</a></p>
+
+<p>이상으로 FusionNet에 대한 글을 마칩니다. 수정해야 할 내용이 있다면 꼭 말씀 부탁드립니다.
+부족한 글이지만 끝까지 읽어주셔서 감사합니다!!!</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>U-Net</title>
 	  <link>http://localhost:4000/U_Net</link>
 		
@@ -43,6 +152,8 @@
 		
 				
 						<author>강은숙</author>
+				
+		
 				
 		
 	  <pubDate>2018-04-02T09:00:00+09:00</pubDate>
@@ -93,8 +204,10 @@
 
 <p>Contracting Path에서 Pooling되기 전의 Feture들은 Upsampling 시에 Layer와 결합되어 고 해상도 output을 만들어 낼 수 있습니다.</p>
 
-<p>하나 더 중요한 점은! Upsampling시에 많은 수의 Feture Channels를 사용합니다. 
-아래 네트워크 아키텍쳐를 보시면 64 채널부터 시작하여 1024까지 증가 되는것을 볼 수 있습니다.</p>
+<p>하나 더 중요한 점은! 
+많은 수의 Feature Channels를 사용하는데요.
+아래 네트워크 아키텍쳐를 보시면 DownSampling시에는 64 채널 -&gt; 1024채널까지 증가 되고,
+UpSampling시에는 1024 채널 -&gt; 64채널을 사용하고 있습니다.</p>
 
 <p>네트워크는 fully connected layers를 전혀 사용하지 않고, 각 layer에서 convolution만 사용합니다.</p>
 
@@ -102,7 +215,7 @@
 
 <p><img src="../assets/images/posts/2018-04-02-U_Net/u-net_fig_2.png" alt="u-net_fig_2" /></p>
 
-<p>이 전략은, 전체 U-Net 아키텍쳐에서 input[572X572] -&gt; output[392X392] 로 Segmentation map이 만들어 질때, 위의 그림에서 보는 것과 같이 border부분에서 정보가 없는 빈 부분이 발생하게 되는데요.</p>
+<p>이 전략은, 전체 U-Net 아키텍쳐에서 input[572X572] -&gt; output[388X388] 로 Segmentation map이 만들어 질때, 위의 그림에서 보는 것과 같이 border부분에서 정보가 없는 빈 부분이 발생하게 되는데요.</p>
 
 <p><img src="../assets/images/posts/2018-04-02-U_Net/u-net_fig_1_ex.png" alt="u-net_fig_1_ex" /></p>
 
@@ -161,26 +274,27 @@
 
 <h4 id="cross-entropy-loss-with-wx">Cross Entropy Loss with w(x)</h4>
 
-<p>각각 정답 픽셀에대한 cross entropy loss에는 $w(\mathbf x)$라는 가중치 값이 추가됩니다. 
-여기서  $p_{l(x)}(x)$의 $l(x)$는 정답 클래스 즉 위 <strong>softmax 수식</strong>에서 정답의 레이블에 해당하는  $k$ 값을 반환하는 함수 입니다.</p>
+<p>각각 정답 픽셀에대한 cross entropy loss에는 <script type="math/tex">w(\mathbf x)</script>라는 가중치 값이 추가됩니다. 
+여기서  <script type="math/tex">p_{l(x)}(x)</script>의 <script type="math/tex">l(x)</script>는 정답 클래스 즉 위 <strong>softmax 수식</strong>에서 정답의 레이블에 해당하는  <script type="math/tex">k</script> 값을 반환하는 함수 입니다.</p>
 
 <p>cross entropy 함수는 정답의 추정값을 log에 사용하기 때문에 이에 해당하는 정답의 확률을 가져오는 것이죠. 
-수식 (1)은 loss 값에 가중치 $w(\mathbf x)$를 곱한 형태이며 이제 우리가 살펴볼 것은 $w(\mathbf x)$입니다.</p>
+수식 (1)은 loss 값에 가중치 <script type="math/tex">w(\mathbf x)</script>를 곱한 형태이며 이제 우리가 살펴볼 것은  <script type="math/tex">w(\mathbf x)</script>입니다.</p>
 
 <p><img src="../assets/images/posts/2018-04-02-U_Net/u-net_cross_entropy.png" alt="1_cross_entropy" /></p>
 
-<p>$w(\mathbf x)$ <strong>구하는 법 :</strong></p>
+<p><script type="math/tex">w(\mathbf x)</script> <strong>구하는 법 :</strong></p>
 
 <p><img src="../assets/images/posts/2018-04-02-U_Net/u-net_wx.png" alt="2_wx" /></p>
 
-<p>$w(\mathbf x)$는 두개의 텀의 합으로 구성됩니다.</p>
+<p><script type="math/tex">w(\mathbf x)</script>는 두개의 텀의 합으로 구성됩니다. <script type="math/tex">w(\mathbf x)</script>는 <script type="math/tex">x</script> 위치의 픽셀에 가중치를 부여하는 함수입니다.</p>
 
-<p>$w_c(\mathbf x)$는 $x$ 위치의 픽셀에 가중치를 부여하는 함수입니다.</p>
+<p><script type="math/tex">w_c(\mathbf x)</script>는  <script type="math/tex">\mathbf x</script> 의 위치에 해당하는 클래스의 빈도수에 따라 값이 결정됩니다.</p>
 
-<p>$w_c(\mathbf x)$는  $\mathbf x$ 의 위치에 해당하는 클래스의 빈도수에 따라 값이 결정됩니다. 
-즉 학습데이터에서 $\mathbf x$ 픽셀이 background일 경우가 많은지 foreground일 경우가 많은지의 빈도수에 따라 결정된다고 보시면 됩니다. 
-그 뒤의 exp 텀은 $d_1$, $d_2$ 함수를 포함하는데 $d_1$ 은 $\mathbf x$ 에서 가장 가까운 세포까지의 거리이고 $d_2$는 두번째로 가까운 세포까지의 거리를 계산하는 함수입니다. 
-즉  $\mathbf x$는 세포사이에 존재하는 픽셀이며 두 세포사이의 간격이 좁을 수록 weight를 큰 값으로 두 세포 사이가 넓을 수록 weight를 작은 값으로 갖게 됩니다. 이는 그림 3(d) 를 보시면 명확하게 확인하실 수 있습니다.</p>
+<p>즉 학습데이터에서 <script type="math/tex">\mathbf x</script> 픽셀이 background일 경우가 많은지 foreground일 경우가 많은지의 빈도수에 따라 결정된다고 보시면 됩니다.</p>
+
+<p>그 뒤의 exp 텀은 <script type="math/tex">d_1</script>, <script type="math/tex">d_2</script> 함수를 포함하는데 <script type="math/tex">d_1</script> 은 <script type="math/tex">\mathbf x</script> 에서 가장 가까운 세포까지의 거리이고 <script type="math/tex">d_2</script>는 두번째로 가까운 세포까지의 거리를 계산하는 함수입니다.</p>
+
+<p>즉  <script type="math/tex">\mathbf x</script>는 세포사이에 존재하는 픽셀이며 두 세포사이의 간격이 좁을 수록 weight를 큰 값으로 두 세포 사이가 넓을 수록 weight를 작은 값으로 갖게 됩니다. 이는 그림 3(d) 를 보시면 명확하게 확인하실 수 있습니다.</p>
 
 <p>네트워크 파라미터의 초기화는 He 초기화 방법을 적용하였습니다.</p>
 
@@ -227,6 +341,8 @@
 		
 				
 						<author>오상준</author>
+				
+		
 				
 		
 				
@@ -306,6 +422,8 @@
 		
 				
 						<author>김승일</author>
+				
+		
 				
 		
 				
