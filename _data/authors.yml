@@ -58,6 +58,16 @@ eunsook_kang:
   facebook: False
   twitter: False
   cover: False
+kyungmo_kim:
+  username: kyungmo_kim
+  name: 김경모
+  bio: 딥러닝을 연구하고 있습니다.
+  picture: assets/images/kyungmo_kim.jpeg
+  url: False
+  url_full: False
+  facebook: False
+  twitter: False
+  cover: False
 #hannah:
 #  username: hannah
 #  name: Hannah Wolfe
