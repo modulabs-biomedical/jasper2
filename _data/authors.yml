@@ -51,7 +51,7 @@ peter_cha:
 eunsook_kang:
   username: eunsook_kang
   name: 강은숙
-  bio: 세상을 이롭게 하기 위한 가치를 추구하는 THE ZILI의 강은숙 입니다. 딥러닝을 연구하고 있습니다.
+  bio: 세상을 이롭게 하기 위한 가치를 추구하는 THE ZILI의 CTO 강은숙 입니다. 딥러닝을 연구하고 있습니다.
   picture: assets/images/eunsook_kang.jpg
   url: www.thezili.com
   url_full: http://www.thezili.com
@@ -63,6 +63,26 @@ kyungmo_kim:
   name: 김경모
   bio: 딥러닝을 연구하고 있습니다.
   picture: assets/images/kyungmo_kim.jpeg
+  url: False
+  url_full: False
+  facebook: False
+  twitter: False
+  cover: False
+soojin_jeon:
+  username: soojin_jeon
+  name: 전수진
+  bio: 세상을 이롭게 하기 위한 가치를 추구하는 THE ZILI의 CEO 전수진 입니다. 딥러닝을 연구하고 있습니다.
+  picture: assets/images/soojin_jeon.jpg
+  url: False
+  url_full: False
+  facebook: False
+  twitter: False
+  cover: False
+heedong_yoon:
+  username: heedong_yoon
+  name: 윤희동
+  bio: 딥러닝을 잘하고 싶은 개발자 입니다.
+  picture: assets/images/heedong_yoon.jpg
   url: False
   url_full: False
   facebook: False
