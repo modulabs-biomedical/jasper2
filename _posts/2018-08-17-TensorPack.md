@@ -24,7 +24,7 @@ author: peter_cha
 * 이번에는 Model의 선언하게 될 때 상속받은 **`ModelDesc`** class와, 학습을 실행하는 Trainer들의 모태가 되는 **`TowerTrainer`** 에 대해 알아보고자 한다.`tensorpack_tutorial.ipynb`에서 설명에 해당하는 부분을 함께 찾아보면 이해에 도움이 더 될 것 같다. 
 * 이 Tutorial은 Tensorpack [documentation](https://tensorpack.readthedocs.io/modules/train.html?highlight=TowerFuncWrapper)을 참고해서 만들었다. 
 
-<br>
+
 
 ## 1. Class `ModelDescBase` &#128527;
 
@@ -41,15 +41,13 @@ author: peter_cha
 ### 1.2. inputs()
 
 * Model에서 input으로 받을 텐서들의 placeholder들을 정의하는 함수다. 
-* 후에 `InputDesc`로 변환될, `tf.placeholder`들을 return 한다.
-
-![u-net_fig_2](../assets/images/posts/2018-08-17-TensorPack/modeldesc.png)
+* 후에 `InputDesc`로 변환될, `tf.placeholder`들을 return 한다.![u-net_fig_2](../assets/images/posts/2018-08-17-TensorPack/modeldesc.png)
 
 ### 1.3. get_inputs_desc
 
 * 이름에서 알 수 있듯이, inputs()에서 정의된 모양대로 생긴 InputDesc를 list로 반환하는 함수다. 
 
-<br>
+
 
 ## 2. Class `ModelDesc` &#128526;
 
@@ -62,7 +60,7 @@ author: peter_cha
 
 
 
-<br>
+
 
 ## 3. Class `TowerTrainer` &#128566;
 
@@ -104,7 +102,7 @@ author: peter_cha
 trainer.towers.training()[0].get_tensor('conv1/output')
 ```
 
-<br>
+
 
 ## 4. Class `Trainer` &#128580;
 
@@ -138,8 +136,6 @@ trainer.towers.training()[0].get_tensor('conv1/output')
 > Register callbacks to the trainer. It can only be called before Trainer.train().
 * <u>Trainer가 모델을 돌릴 때마다(epoch이 진행 됨에 따라), 수행하게 될 부가적인 기능</u>들을 Tensorpack에서는 **callback**이라고 부르고, 대표적인 callback으로 **ModelSaver()** 가 있다.
 * 이 Callback을 명시적으로 전달하여 Trainer Object에 세팅할 수 있는 기능이다. 주로 모델을 튜닝할 때, 설정하면서 종종 쓰는 것을 코드 상에서 확인할 수 있다. 
-
-<br>
 
 
 
