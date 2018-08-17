@@ -68,9 +68,9 @@ author: peter_cha
 
 ### Tensorpack에서는,
 
-* 우리가 흔히 말하는 Model을 계속 Tower라고 지칭한다.(왜 그런지 모르겠다.:no_mouth:)
+* 우리가 흔히 말하는 Model을 계속 Tower라고 지칭한다.(왜 그런지 모르겠다. &#128566;)
 * 그래서 아래에서 나오는 `TowerTrainer`는 만든 모델을 학습을 시키는 **Trainer**고, 그 트레이너가 어떤 특징들을 가진 함수들을 들고 다니는지 생각하면 이해가 쉽다. 
-* 기본적으로 <u>Tensorpack에 나오는 모든 Trainer들은 `TowerTrainer`의 subclass다</u>. 이 개념이 그래서 궁극적으로는 모든 neural-network training을 가능하게 해준다.
+* 기본적으로 Tensorpack에 나오는 모든 Trainer들은 `TowerTrainer`의 subclass다 이 개념이 그래서 궁극적으로는 모든 neural-network training을 가능하게 해준다.
 
 ### 3.1. `get_predictor`(input_names, output_names, device=0)
 
@@ -108,11 +108,16 @@ trainer.towers.training()[0].get_tensor('conv1/output')
 
 ## 4. Class `Trainer` &#128580;
 
-> Base class for a trainer.
-* 분명히 위에서 금방, 
-  > "기본적으로 <u>Tensorpack에 나오는 모든 Trainer들은 `TowerTrainer`의 subclass다</u> "
+>  Base class for a trainer.
 
-  라고 했는데, 이 `TowerTrainer가 상속을 받는 class`가 있었으니, 이름하여 TowerTrainer보다 더 단순한 **`Trainer`** 다.
+
+
+- 분명히 위에서 금방, 
+
+> "기본적으로 Tensorpack에 나오는 모든 Trainer들은 `TowerTrainer`의 subclass다"
+
+라고 했는데, 이 `TowerTrainer가 상속을 받는 class`가 있었으니, 이름하여 TowerTrainer보다 더 단순한 **`Trainer`** 다.
+
 * 다른 TowerTrainer를 상속 받은 Trainer들을 사용할 때, 종종 TowerTrainer에서 본 적 없는 친구들이 나타나는데, 그 친구들이 Trainer의 것인 경우가 있다. 
 * 하지만, Trainer 고유 함수나 요소에 직접적으로 접근할 일이 별로 없어서 아래의 3가지 정도만 알고 있으면 될 것 같다. 나머지는 [문서](https://tensorpack.readthedocs.io/modules/train.html?highlight=register_callback#tensorpack.train.Trainer)를 참고하자. 
 
@@ -143,7 +148,7 @@ trainer.towers.training()[0].get_tensor('conv1/output')
  * **`TowerContext`** 는 Training과 Validation 혹은 Test시에 동작이 달라야 하는 `BatchNorm`이나, `Dropout`을 제어하기 위해서 만들어진 function이다. 
  * `tensorpack_tutorial.ipynb`에서는 이 친구를 찾아볼 수 없는데, SimpleTrainer 소스코드를 보니, 자체적으로 안에서 train/test time에 맞춰서 TrainTowerContext라는 것으로 조절하고 있기 때문이었다. 
  * 사용법은 간단하다. 
-> ``` python
+> ```
 > training
 > with TowerContext('', is_training=True):
 >   # call any tensorpack layer
@@ -152,6 +157,8 @@ trainer.towers.training()[0].get_tensor('conv1/output')
 > with TowerContext('name or empty', is_training=False):
 >   # build the graph again
 > ```
+
+
 
 - 그래서, 내가 세운 모델을 외부에서 사용하고 싶을 때, 즉, 나만의 Trainer를 새로 정의해서 train/test time때, 다르게 동작을 해야하는 상황이라면, TowerContext를 적절히 써서 분기시켜줘야 한다. 
 - 아래는 Tensorpack Github에서 제공하는 [GANTrainer](https://github.com/tensorpack/tensorpack/blob/master/examples/GAN/GAN.py)에서 실제로 TowerContext를 어떻게 설정해주는지 보여주는 예시다. 
