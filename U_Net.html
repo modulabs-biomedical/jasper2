@@ -186,20 +186,24 @@ into the {body} of the default.hbs template -->
 
 <p>U-Net에서 핵심으로 말하고 있는 내용은 세가지로 생각됩니다.</p>
 
-<ol>
-  <li>Convolution Encoder에 해당하는 Contracting Path + Convolution Decoder에 해당하는 Expanding Path의 구조로 구성. (해당 구조는 Fully Convolution + Deconvolution 구조의 조합)</li>
-  <li>Expanding Path에서 Upsampling 할 때, 좀 더 정확한 Localization을 하기 위해서 Contracting Path의 Feature를 Copy and Crop하여 Concat 하는 구조.</li>
-  <li>Data Augmentation</li>
-</ol>
+<blockquote>
+  <ol>
+    <li>Convolution Encoder에 해당하는 Contracting Path + Convolution Decoder에 해당하는 Expanding Path의 구조로 구성. (해당 구조는 Fully Convolution + Deconvolution 구조의 조합)</li>
+    <li>Expanding Path에서 Upsampling 할 때, 좀 더 정확한 Localization을 하기 위해서 Contracting Path의 Feature를 Copy and Crop하여 Concat 하는 구조.</li>
+    <li>Data Augmentation</li>
+  </ol>
+</blockquote>
 
 <p>기존에는(<a href="http://people.idsia.ch/~juergen/nips2012.pdf">Ciresan et al. [1]</a>) Sliding-window을 하면서 로컬 영역(패치)을 입력으로 제공해서 각 픽셀의 클래스 레이블을 예측했지만, 이 방법은 2가지 단점으로 인해서 Fully Convolution Network구조를 제안하고 있습니다.</p>
 
 <p>두가지 단점은,</p>
 
-<ol>
-  <li>네트워크가 각 패치에 대해 개별적으로 실행되어야 하고 패치가 겹쳐 중복성이 많기 때문에 상당히 느리다.</li>
-  <li>localization과 context사이에는 trade-off가 있는데, 이는 큰 사이즈의 patches는 많은 max-pooling을 해야해서 localization의 정확도가 떨어질 수 있고, 반면 작은 사이즈의 patches는 협소한 context만을 볼 수 있기 때문입니다.</li>
-</ol>
+<blockquote>
+  <ol>
+    <li>네트워크가 각 패치에 대해 개별적으로 실행되어야 하고 패치가 겹쳐 중복성이 많기 때문에 상당히 느리다.</li>
+    <li>localization과 context사이에는 trade-off가 있는데, 이는 큰 사이즈의 patches는 많은 max-pooling을 해야해서 localization의 정확도가 떨어질 수 있고, 반면 작은 사이즈의 patches는 협소한 context만을 볼 수 있기 때문입니다.</li>
+  </ol>
+</blockquote>
 
 <p>Contracting Path에서 Pooling되기 전의 Feture들은 Upsampling 시에 Layer와 결합되어 고 해상도 output을 만들어 낼 수 있습니다.</p>
 
@@ -214,19 +218,21 @@ UpSampling시에는 1024 채널 -&gt; 64채널을 사용하고 있습니다.</p>
 
 <p><img src="../assets/images/posts/2018-04-02-U_Net/u-net_fig_2.png" alt="u-net_fig_2" /></p>
 
-<p>이 전략은, 전체 U-Net 아키텍쳐에서 input[572X572] -&gt; output[388X388] 로 Segmentation map이 만들어 질때, 위의 그림에서 보는 것과 같이 border부분에서 정보가 없는 빈 부분이 발생하게 되는데요.</p>
+<blockquote>
+  <p>Overlap-tile 전략은, U-Net에서 다루는 전자 현미경 데이터의 특성상 이미지 사이즈의 크기가 상당히 크기 때문에 Patch 단위로 잘라서 Input 으로 넣고 있습니다.</p>
 
-<p><img src="../assets/images/posts/2018-04-02-U_Net/u-net_fig_1_ex.png" alt="u-net_fig_1_ex" /></p>
+  <p>이때 <code class="highlighter-rouge">Fig.2</code>에서 보는 것과 같이 Border 부분에 정보가 없는 빈 부분을  0으로 채우거나, 주변의 값들로 채우거나 이런 방법이 아닌 Mirroring 방법으로 pixel의 값을 채워주는 방법 입니다.</p>
 
-<p>이 부분을 채우기 위해서 0으로 채우거나, 주변의 값들로 채우거나 이런 방법이 아닌 Mirroring 방법으로 pixel의 값을 채워주는 방법 입니다.</p>
+  <p>노랑색 영역이 실제 세그멘테이션 될 영역이고, 파랑색 부분이 Patch 입니다.</p>
 
-<p>노랑색 영역이 실제 세그멘테이션 될 영역이고, 파랑색 부분이 Patch 입니다.</p>
-
-<p>그림을 확대해서 자세히 보시면, 거울처럼 반사되어 border부분이 채워진 것을 확인 할 수 있었습니다.</p>
+  <p>그림을 확대해서 자세히 보시면, 거울처럼 반사되어 border부분이 채워진 것을 확인 할 수 있었습니다.</p>
+</blockquote>
 
 <p><img src="../assets/images/posts/2018-04-02-U_Net/u-net_fig_2_ex.png" alt="u-net_fig_2_ex" /></p>
 
-<p>Overlap-tile 이라는 이름은, 파랑색 부분이 Patch단위로 잘라서 세그멘테이션을 하게 되는데 (용어는, Patch == Tile) 이 부분이 아래 그림처럼 겹쳐서 뜯어내서 학습시키기 때문인 것 같습니다.</p>
+<blockquote>
+  <p>Overlap-tile 이라는 이름은, 파랑색 부분이 Patch단위로 잘라서 세그멘테이션을 하게 되는데 (용어는, Patch == Tile) 이 부분이 아래 그림처럼 겹쳐서 뜯어내서 학습시키기 때문인 것 같습니다.</p>
+</blockquote>
 
 <p><img src="../assets/images/posts/2018-04-02-U_Net/u-net_fig_2_overlap.png" alt="u-net_fig_2_overlap" /></p>
 
@@ -236,23 +242,27 @@ UpSampling시에는 1024 채널 -&gt; 64채널을 사용하고 있습니다.</p>
 
 <p>Contracting Path는</p>
 
-<ol>
-  <li>전형적인 Convolution network 이고,</li>
-  <li>두번의 3X3 convolution을 반복 수행하며 (unpadded convolution를 사용),</li>
-  <li>ReLU를 사용합니다</li>
-  <li>2X2 max pooling 과 stride 2를 사용함</li>
-  <li>downsampling시에는 2배의 feture channel을 사용하고</li>
-</ol>
+<blockquote>
+  <ol>
+    <li>전형적인 Convolution network 이고,</li>
+    <li>두번의 3X3 convolution을 반복 수행하며 (unpadded convolution를 사용),</li>
+    <li>ReLU를 사용합니다</li>
+    <li>2X2 max pooling 과 stride 2를 사용함</li>
+    <li>downsampling시에는 2배의 feture channel을 사용하고</li>
+  </ol>
+</blockquote>
 
 <p>Expanding Path는</p>
 
-<ol>
-  <li>2X2 convolution (up-convolution)을 사용하고,</li>
-  <li>feature channel은 반으로 줄여 사용합니다.</li>
-  <li>Contracting Path에서 Max-Pooling 되기 전의 feature map을 Crop 하여 Up-Convolution 할 때 concatenation을 합니다.</li>
-  <li>두번의 3X3 convolution 반복하며</li>
-  <li>ReLU를 사용합니다</li>
-</ol>
+<blockquote>
+  <ol>
+    <li>2X2 convolution (up-convolution)을 사용하고,</li>
+    <li>feature channel은 반으로 줄여 사용합니다.</li>
+    <li>Contracting Path에서 Max-Pooling 되기 전의 feature map을 Crop 하여 Up-Convolution 할 때 concatenation을 합니다.</li>
+    <li>두번의 3X3 convolution 반복하며</li>
+    <li>ReLU를 사용합니다</li>
+  </ol>
+</blockquote>
 
 <p>마지막 Final Layer에서는 1X1 convolution을 사용하여 2개의 클래스로 분류합니다.</p>
 
@@ -273,11 +283,13 @@ UpSampling시에는 1024 채널 -&gt; 64채널을 사용하고 있습니다.</p>
 
 <h4 id="cross-entropy-loss-with-wx">Cross Entropy Loss with w(x)</h4>
 
-<p>각각 정답 픽셀에대한 cross entropy loss에는 <script type="math/tex">w(\mathbf x)</script>라는 가중치 값이 추가됩니다. 
+<blockquote>
+  <p>각각 정답 픽셀에대한 cross entropy loss에는 <script type="math/tex">w(\mathbf x)</script>라는 가중치 값이 추가됩니다. 
 여기서  <script type="math/tex">p_{l(x)}(x)</script>의 <script type="math/tex">l(x)</script>는 정답 클래스 즉 위 <strong>softmax 수식</strong>에서 정답의 레이블에 해당하는  <script type="math/tex">k</script> 값을 반환하는 함수 입니다.</p>
 
-<p>cross entropy 함수는 정답의 추정값을 log에 사용하기 때문에 이에 해당하는 정답의 확률을 가져오는 것이죠. 
+  <p>cross entropy 함수는 정답의 추정값을 log에 사용하기 때문에 이에 해당하는 정답의 확률을 가져오는 것이죠. 
 수식 (1)은 loss 값에 가중치 <script type="math/tex">w(\mathbf x)</script>를 곱한 형태이며 이제 우리가 살펴볼 것은  <script type="math/tex">w(\mathbf x)</script>입니다.</p>
+</blockquote>
 
 <p><img src="../assets/images/posts/2018-04-02-U_Net/u-net_cross_entropy.png" alt="1_cross_entropy" /></p>
 
@@ -285,17 +297,19 @@ UpSampling시에는 1024 채널 -&gt; 64채널을 사용하고 있습니다.</p>
 
 <p><img src="../assets/images/posts/2018-04-02-U_Net/u-net_wx.png" alt="2_wx" /></p>
 
-<p><script type="math/tex">w(\mathbf x)</script>는 두개의 텀의 합으로 구성됩니다. <script type="math/tex">w(\mathbf x)</script>는 <script type="math/tex">x</script> 위치의 픽셀에 가중치를 부여하는 함수입니다.</p>
+<blockquote>
+  <p><script type="math/tex">w(\mathbf x)</script>는 두개의 텀의 합으로 구성됩니다. <script type="math/tex">w(\mathbf x)</script>는 <script type="math/tex">x</script> 위치의 픽셀에 가중치를 부여하는 함수입니다.</p>
 
-<p><script type="math/tex">w_c(\mathbf x)</script>는  <script type="math/tex">\mathbf x</script> 의 위치에 해당하는 클래스의 빈도수에 따라 값이 결정됩니다.</p>
+  <p><script type="math/tex">w_c(\mathbf x)</script>는  <script type="math/tex">\mathbf x</script> 의 위치에 해당하는 클래스의 빈도수에 따라 값이 결정됩니다.</p>
 
-<p>즉 학습데이터에서 <script type="math/tex">\mathbf x</script> 픽셀이 background일 경우가 많은지 foreground일 경우가 많은지의 빈도수에 따라 결정된다고 보시면 됩니다.</p>
+  <p>즉 학습데이터에서 <script type="math/tex">\mathbf x</script> 픽셀이 background일 경우가 많은지 foreground일 경우가 많은지의 빈도수에 따라 결정된다고 보시면 됩니다.</p>
 
-<p>그 뒤의 exp 텀은 <script type="math/tex">d_1</script>, <script type="math/tex">d_2</script> 함수를 포함하는데 <script type="math/tex">d_1</script> 은 <script type="math/tex">\mathbf x</script> 에서 가장 가까운 세포까지의 거리이고 <script type="math/tex">d_2</script>는 두번째로 가까운 세포까지의 거리를 계산하는 함수입니다.</p>
+  <p>그 뒤의 exp 텀은 <script type="math/tex">d_1</script>, <script type="math/tex">d_2</script> 함수를 포함하는데 <script type="math/tex">d_1</script> 은 <script type="math/tex">\mathbf x</script> 에서 가장 가까운 세포까지의 거리이고 <script type="math/tex">d_2</script>는 두번째로 가까운 세포까지의 거리를 계산하는 함수입니다.</p>
 
-<p>즉  <script type="math/tex">\mathbf x</script>는 세포사이에 존재하는 픽셀이며 두 세포사이의 간격이 좁을 수록 weight를 큰 값으로 두 세포 사이가 넓을 수록 weight를 작은 값으로 갖게 됩니다. 이는 그림 3(d) 를 보시면 명확하게 확인하실 수 있습니다.</p>
+  <p>즉  <script type="math/tex">\mathbf x</script>는 세포사이에 존재하는 픽셀이며 두 세포사이의 간격이 좁을 수록 weight를 큰 값으로 두 세포 사이가 넓을 수록 weight를 작은 값으로 갖게 됩니다. 이는 그림 3(d) 를 보시면 명확하게 확인하실 수 있습니다.</p>
 
-<p>네트워크 파라미터의 초기화는 He 초기화 방법을 적용하였습니다.</p>
+  <p>네트워크 파라미터의 초기화는 He 초기화 방법을 적용하였습니다.</p>
+</blockquote>
 
 <h3 id="31-data-augmentation">3.1 Data Augmentation</h3>
 

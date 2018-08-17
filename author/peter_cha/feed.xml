@@ -149,9 +149,9 @@
 <h3 id="tensorpack에서는">Tensorpack에서는,</h3>
 
 <ul>
-  <li>우리가 흔히 말하는 Model을 계속 Tower라고 지칭한다.(왜 그런지 모르겠다.:no_mouth:)</li>
+  <li>우리가 흔히 말하는 Model을 계속 Tower라고 지칭한다.(왜 그런지 모르겠다. 😶)</li>
   <li>그래서 아래에서 나오는 <code class="highlighter-rouge">TowerTrainer</code>는 만든 모델을 학습을 시키는 <strong>Trainer</strong>고, 그 트레이너가 어떤 특징들을 가진 함수들을 들고 다니는지 생각하면 이해가 쉽다.</li>
-  <li>기본적으로 <u>Tensorpack에 나오는 모든 Trainer들은 `TowerTrainer`의 subclass다</u>. 이 개념이 그래서 궁극적으로는 모든 neural-network training을 가능하게 해준다.</li>
+  <li>기본적으로 Tensorpack에 나오는 모든 Trainer들은 <code class="highlighter-rouge">TowerTrainer</code>의 subclass다 이 개념이 그래서 궁극적으로는 모든 neural-network training을 가능하게 해준다.</li>
 </ul>
 
 <h3 id="31-get_predictorinput_names-output_names-device0">3.1. <code class="highlighter-rouge">get_predictor</code>(input_names, output_names, device=0)</h3>
@@ -205,13 +205,18 @@ trainer.towers.training()[0].get_tensor('conv1/output')
 
 <blockquote>
   <p>Base class for a trainer.</p>
-  <ul>
-    <li>분명히 위에서 금방, 
-“기본적으로 <u>Tensorpack에 나오는 모든 Trainer들은 `TowerTrainer`의 subclass다</u> “</li>
-  </ul>
+</blockquote>
+
+<ul>
+  <li>분명히 위에서 금방,</li>
+</ul>
+
+<blockquote>
+  <p>“기본적으로 Tensorpack에 나오는 모든 Trainer들은 <code class="highlighter-rouge">TowerTrainer</code>의 subclass다”</p>
 </blockquote>
 
 <p>라고 했는데, 이 <code class="highlighter-rouge">TowerTrainer가 상속을 받는 class</code>가 있었으니, 이름하여 TowerTrainer보다 더 단순한 <strong><code class="highlighter-rouge">Trainer</code></strong> 다.</p>
+
 <ul>
   <li>다른 TowerTrainer를 상속 받은 Trainer들을 사용할 때, 종종 TowerTrainer에서 본 적 없는 친구들이 나타나는데, 그 친구들이 Trainer의 것인 경우가 있다.</li>
   <li>하지만, Trainer 고유 함수나 요소에 직접적으로 접근할 일이 별로 없어서 아래의 3가지 정도만 알고 있으면 될 것 같다. 나머지는 <a href="https://tensorpack.readthedocs.io/modules/train.html?highlight=register_callback#tensorpack.train.Trainer">문서</a>를 참고하자.</li>
@@ -252,13 +257,13 @@ trainer.towers.training()[0].get_tensor('conv1/output')
   <li><code class="highlighter-rouge">tensorpack_tutorial.ipynb</code>에서는 이 친구를 찾아볼 수 없는데, SimpleTrainer 소스코드를 보니, 자체적으로 안에서 train/test time에 맞춰서 TrainTowerContext라는 것으로 조절하고 있기 때문이었다.</li>
   <li>사용법은 간단하다.
     <blockquote>
-      <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">training</span>
-<span class="k">with</span> <span class="n">TowerContext</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">is_training</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
-  <span class="c"># call any tensorpack layer</span>
+      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>training
+with TowerContext('', is_training=True):
+  # call any tensorpack layer
 
-<span class="n">test</span>
-<span class="k">with</span> <span class="n">TowerContext</span><span class="p">(</span><span class="s">'name or empty'</span><span class="p">,</span> <span class="n">is_training</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-  <span class="c"># build the graph again</span>
+test
+with TowerContext('name or empty', is_training=False):
+  # build the graph again
 </code></pre></div>      </div>
     </blockquote>
   </li>
