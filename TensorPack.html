@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>TensorPack</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="모두의연구소 바이오메디컬랩 기술 블로그입니다." />
+    <link rel="shortcut icon" href="http://localhost:20010/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="http://localhost:20010/TensorPack" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="바이오메디컬랩@모두의연구소" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="TensorPack" />
+    <meta property="og:description" content="Tensorpack 구조 이해하기 ModelDesc와 Trainer를 중심으로 Peter Cha Tensorpack을 공부하면, 😐 우선 모르는 것들 투성이다. 알고나면 너무 쓰기 편하지만, 처음 접할 때는 너무 많이 추상화 된 API에 ‘이게 tensorflow는 맞는지..’할 정도니까. 우선 이 튜토리얼을 보기 전, 필자의 tensorpack_tutorial.ipynb를 먼저 보길 바란다. 대략적인 dataflow는 데이터를 불러오는 부분으로 이해를 마쳤다고 생각하고, dataflow부분은" />
+    <meta property="og:url" content="http://localhost:20010/TensorPack" />
+    <meta property="og:image" content="http://localhost:20010/assets/images/posts/2018-08-17-TensorPack/tensorpack.png" />
+    <meta property="article:publisher" content="https://www.facebook.com/" />
+    <meta property="article:author" content="https://www.facebook.com/" />
+    <meta property="article:published_time" content="2018-08-17T09:00:00+09:00" />
+    <meta property="article:modified_time" content="2018-08-17T09:00:00+09:00" />
+    <meta property="article:tag" content="개념 정리" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TensorPack" />
+    <meta name="twitter:description" content="Tensorpack 구조 이해하기 ModelDesc와 Trainer를 중심으로 Peter Cha Tensorpack을 공부하면, 😐 우선 모르는 것들 투성이다. 알고나면 너무 쓰기 편하지만, 처음 접할 때는 너무 많이 추상화 된 API에 ‘이게 tensorflow는 맞는지..’할 정도니까. 우선 이 튜토리얼을 보기 전, 필자의 tensorpack_tutorial.ipynb를 먼저 보길 바란다. 대략적인 dataflow는 데이터를 불러오는 부분으로 이해를 마쳤다고 생각하고, dataflow부분은" />
+    <meta name="twitter:url" content="http://localhost:20010/" />
+    <meta name="twitter:image" content="http://localhost:20010/assets/images/posts/2018-08-17-TensorPack/tensorpack.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="바이오메디컬랩@모두의연구소" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="개념 정리" />
+    <meta name="twitter:site" content="@" />
+    <meta name="twitter:creator" content="@" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "바이오메디컬랩@모두의연구소",
+        "logo": "http://localhost:20010/assets/images/blog-icon.png"
+    },
+    "url": "http://localhost:20010/TensorPack",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:20010/assets/images/posts/2018-08-17-TensorPack/tensorpack.png",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:20010/TensorPack"
+    },
+    "description": "Tensorpack 구조 이해하기 ModelDesc와 Trainer를 중심으로 Peter Cha Tensorpack을 공부하면, 😐 우선 모르는 것들 투성이다. 알고나면 너무 쓰기 편하지만, 처음 접할 때는 너무 많이 추상화 된 API에 ‘이게 tensorflow는 맞는지..’할 정도니까. 우선 이 튜토리얼을 보기 전, 필자의 tensorpack_tutorial.ipynb를 먼저 보길 바란다. 대략적인 dataflow는 데이터를 불러오는 부분으로 이해를 마쳤다고 생각하고, dataflow부분은"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="TensorPack" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="http://localhost:20010/"><img src="/assets/images/blog-icon.png" alt="바이오메디컬랩@모두의연구소" /></a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">목록</a></li>
+    <li class="nav-about" role="menuitem"><a href="/about/">소개</a></li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+            
+        </div>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-papers ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="17 August 2018">2018년 08월 17일</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/개념-정리/'>개념 정리</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">TensorPack</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/images/posts/2018-08-17-TensorPack/tensorpack.png)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <h1 id="tensorpack-구조-이해하기">Tensorpack 구조 이해하기</h1>
+
+<h5 id="modeldesc와-trainer를-중심으로">ModelDesc와 Trainer를 중심으로</h5>
+
+<h3 id="peter-cha">Peter Cha</h3>
+
+<h2 id="tensorpack을-공부하면-">Tensorpack을 공부하면, 😐</h2>
+
+<ul>
+  <li>우선 모르는 것들 투성이다. 알고나면 너무 쓰기 편하지만, 처음 접할 때는 너무 많이 추상화 된 API에 ‘이게 tensorflow는 맞는지..’할 정도니까.</li>
+  <li>우선 이 튜토리얼을 보기 전, 필자의 <a href="https://github.com/PeterCha90/Tensorflow-Deep-Learning/blob/master/Tensorpack_tutorial.ipynb"><code class="highlighter-rouge">tensorpack_tutorial.ipynb</code></a>를 먼저 보길 바란다. 대략적인 dataflow는 데이터를 불러오는 부분으로 이해를 마쳤다고 생각하고, dataflow부분은 생략하고 설명을 진행하도록 하겠다.</li>
+  <li>이번에는 Model의 선언하게 될 때 상속받은 <strong><code class="highlighter-rouge">ModelDesc</code></strong> class와, 학습을 실행하는 Trainer들의 모태가 되는 <strong><code class="highlighter-rouge">TowerTrainer</code></strong> 에 대해 알아보고자 한다.<code class="highlighter-rouge">tensorpack_tutorial.ipynb</code>에서 설명에 해당하는 부분을 함께 찾아보면 이해에 도움이 더 될 것 같다.</li>
+  <li>이 Tutorial은 Tensorpack <a href="https://tensorpack.readthedocs.io/modules/train.html?highlight=TowerFuncWrapper">documentation</a>을 참고해서 만들었다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="1-class-modeldescbase-">1. Class <code class="highlighter-rouge">ModelDescBase</code> 😏</h2>
+
+<blockquote>
+  <p>Base class for a model description이다.</p>
+  <ul>
+    <li><code class="highlighter-rouge">ModelDesc</code>는 ModelDescBase를 기반으로 만들어졌기 때문에, <code class="highlighter-rouge">ModelDescBase</code>를 먼저 설명한다.</li>
+  </ul>
+</blockquote>
+
+<h3 id="11-build_graphargs">1.1. build_graph(*args)</h3>
+
+<ul>
+  <li>모든 symbolic graph (<strong>Model의 형태</strong>)를 Build한다. 이 함수가 뒤에서 설명할 <code class="highlighter-rouge">TowerTrainer</code>에서 <code class="highlighter-rouge">tower function</code>의 일부분이다.</li>
+  <li>그 다음 설명할 <code class="highlighter-rouge">inputs()</code>에서 정의된 input list에 맞는 <code class="highlighter-rouge">tf.Tensor</code>를 parameter로 받는다.</li>
+  <li>아무것도 리턴하지 않는다.</li>
+</ul>
+
+<h3 id="12-inputs">1.2. inputs()</h3>
+
+<ul>
+  <li>Model에서 input으로 받을 텐서들의 placeholder들을 정의하는 함수다.</li>
+  <li>후에 <code class="highlighter-rouge">InputDesc</code>로 변환될, <code class="highlighter-rouge">tf.placeholder</code>들을 return 한다.</li>
+</ul>
+
+<p><img src="../assets/images/posts/2018-08-17-TensorPack/modeldesc.png" alt="u-net_fig_2" /></p>
+
+<h3 id="13-get_inputs_desc">1.3. get_inputs_desc</h3>
+
+<ul>
+  <li>이름에서 알 수 있듯이, inputs()에서 정의된 모양대로 생긴 InputDesc를 list로 반환하는 함수다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="2-class-modeldesc-">2. Class <code class="highlighter-rouge">ModelDesc</code> 😎</h2>
+
+<ul>
+  <li><strong>주의사항</strong>: <strong>build_graph()를 꼭 cost를 return하도록</strong> 코딩해야 한다.</li>
+  <li>앞에서 설명한 ModelDescBase를 상속받은 터라, 위의 3가지는 함수는 내장하고 있다.
+    <h3 id="21-optimizer">2.1. optimizer()</h3>
+  </li>
+  <li><code class="highlighter-rouge">tf.train.Optimizer</code>를 여기에 선언해주고 Return하게끔 함수를 짜준다.
+    <h3 id="22-get_optimizer">2.2. get_optimizer()</h3>
+  </li>
+  <li>optimizer()를 호출하면, 계속 새로 optimizer를 만들어서 생성하는데, 이 함수를 쓰면 이미 optimizer()를 통해 생긴 optimizer를 기록해 놓았다가 반환시켜준다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="3-class-towertrainer-">3. Class <code class="highlighter-rouge">TowerTrainer</code> 😶</h2>
+
+<h3 id="tensorpack에서는">Tensorpack에서는,</h3>
+
+<ul>
+  <li>우리가 흔히 말하는 Model을 계속 Tower라고 지칭한다.(왜 그런지 모르겠다.:no_mouth:)</li>
+  <li>그래서 아래에서 나오는 <code class="highlighter-rouge">TowerTrainer</code>는 만든 모델을 학습을 시키는 <strong>Trainer</strong>고, 그 트레이너가 어떤 특징들을 가진 함수들을 들고 다니는지 생각하면 이해가 쉽다.</li>
+  <li>기본적으로 <u>Tensorpack에 나오는 모든 Trainer들은 `TowerTrainer`의 subclass다</u>. 이 개념이 그래서 궁극적으로는 모든 neural-network training을 가능하게 해준다.</li>
+</ul>
+
+<h3 id="31-get_predictorinput_names-output_names-device0">3.1. <code class="highlighter-rouge">get_predictor</code>(input_names, output_names, device=0)</h3>
+
+<blockquote>
+  <p>Returns a callable predictor built under <code class="highlighter-rouge">TowerContext(is_training=False)</code>.</p>
+</blockquote>
+
+<ul>
+  <li>이 함수가 호출되면, 가지고 있는 TowerContext(모델의 Train or Test 여부)를 <u>training mode가 아닌 상태(is_training=False, 즉=Test 모드)</u>로 돌려준다. 그러니까 <strong>Test data로 시험할 때만 부르는 함수</strong>. 그래서 이름도 predictor.</li>
+  <li><strong><code class="highlighter-rouge">Parameters</code></strong>: <code class="highlighter-rouge">input_names</code> <strong>(list)</strong>, <code class="highlighter-rouge">output_names</code> <strong>(list)</strong>, <code class="highlighter-rouge">device</code> <strong>(int)</strong> – build the predictor on device ‘/gpu:{device}’ or use -1 for ‘/cpu:0’.</li>
+  <li>파라미터로 들어가는 input, output이름은 모델 안에서 선언된 이름이 아니면 안 돌아가니까 조심.</li>
+</ul>
+
+<h3 id="32-inputs_desc">3.2. inputs_desc</h3>
+<blockquote>
+  <p>Returns – list[InputDesc]: metainfo about the inputs to the tower.</p>
+</blockquote>
+
+<ul>
+  <li>말 그대로, 모델에 들어갈 Input의 크기와 같은 정보가 들어있는 list를 반환해준다.</li>
+</ul>
+
+<h3 id="33-tower_func">3.3. tower_func</h3>
+<blockquote>
+  <p>Build Model.</p>
+  <ul>
+    <li>이 친구가 실제 <strong>모델을 정의하고, Build</strong>할 수 있는 함수를 세팅하는 부분!</li>
+    <li><strong><code class="highlighter-rouge">ModelDesc</code></strong> interface로 정의된 model을 trainer로 돌려야 하는 상황이 자주 발생할 수 있는데, 이 때, <u>ModelDesc에서 선언된 **build_graph 함수**가 이 역할을 대신</u>해 줄 수 있다.</li>
+  </ul>
+</blockquote>
+
+<h3 id="34-towers">3.4. towers</h3>
+<blockquote>
+  <p>Returns – a TowerTensorHandles object, to
+access the tower handles by either indices or names.</p>
+  <ul>
+    <li>모델 및 Train 전반에 걸쳐 관련된 변수들에 접근하고 싶을 때 사용한다! 그래서 이 함수는 Transfer learning을 할 때 유용할 거 같다.</li>
+    <li>이미 <strong>모델 그래프가 Set up이 끝난 뒤에만</strong> 이 함수는 호출될 수 있다.</li>
+    <li>각각의 <code class="highlighter-rouge">layer</code>와 <code class="highlighter-rouge">attributes</code>에 이 <code class="highlighter-rouge">towers</code>함수를 호출하면 접근할 수 있게 된다! 아래는 예시.</li>
+  </ul>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Access the conv1/output tensor in the first training tower
+trainer.towers.training()[0].get_tensor('conv1/output')
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="4-class-trainer-">4. Class <code class="highlighter-rouge">Trainer</code> 🙄</h2>
+
+<blockquote>
+  <p>Base class for a trainer.</p>
+  <ul>
+    <li>분명히 위에서 금방, 
+“기본적으로 <u>Tensorpack에 나오는 모든 Trainer들은 `TowerTrainer`의 subclass다</u> “</li>
+  </ul>
+</blockquote>
+
+<p>라고 했는데, 이 <code class="highlighter-rouge">TowerTrainer가 상속을 받는 class</code>가 있었으니, 이름하여 TowerTrainer보다 더 단순한 <strong><code class="highlighter-rouge">Trainer</code></strong> 다.</p>
+<ul>
+  <li>다른 TowerTrainer를 상속 받은 Trainer들을 사용할 때, 종종 TowerTrainer에서 본 적 없는 친구들이 나타나는데, 그 친구들이 Trainer의 것인 경우가 있다.</li>
+  <li>하지만, Trainer 고유 함수나 요소에 직접적으로 접근할 일이 별로 없어서 아래의 3가지 정도만 알고 있으면 될 것 같다. 나머지는 <a href="https://tensorpack.readthedocs.io/modules/train.html?highlight=register_callback#tensorpack.train.Trainer">문서</a>를 참고하자.</li>
+</ul>
+
+<blockquote>
+  <p>아래 1, 2번의 max_epoch과, steps_per_epoch은 <code class="highlighter-rouge">TrainConfig</code>에서 자주 만나는 키워드들인데, 이 친구들이 Trainer의 요소였다.</p>
+</blockquote>
+
+<h3 id="41-max_epoch">4.1. max_epoch</h3>
+<ul>
+  <li>Epoch은 몇 번 돌릴 것인지</li>
+</ul>
+
+<h3 id="42-steps_per_epoch">4.2. steps_per_epoch</h3>
+
+<ul>
+  <li>한 에폭당 steps은 총 몇 번인지.</li>
+</ul>
+
+<p><img src="../assets/images/posts/2018-08-17-TensorPack/sample.png" alt="u-net_fig_2" /></p>
+
+<h3 id="43-register_callbackcb">4.3. register_callback(cb)</h3>
+<blockquote>
+  <p>Register callbacks to the trainer. It can only be called before Trainer.train().</p>
+  <ul>
+    <li><u>Trainer가 모델을 돌릴 때마다(epoch이 진행 됨에 따라), 수행하게 될 부가적인 기능</u>들을 Tensorpack에서는 <strong>callback</strong>이라고 부르고, 대표적인 callback으로 <strong>ModelSaver()</strong> 가 있다.</li>
+    <li>이 Callback을 명시적으로 전달하여 Trainer Object에 세팅할 수 있는 기능이다. 주로 모델을 튜닝할 때, 설정하면서 종종 쓰는 것을 코드 상에서 확인할 수 있다.</li>
+  </ul>
+</blockquote>
+
+<p><br /></p>
+
+<h2 id="5-towercontext-">5. TowerContext 😛</h2>
+
+<ul>
+  <li><strong><code class="highlighter-rouge">TowerContext</code></strong> 는 Training과 Validation 혹은 Test시에 동작이 달라야 하는 <code class="highlighter-rouge">BatchNorm</code>이나, <code class="highlighter-rouge">Dropout</code>을 제어하기 위해서 만들어진 function이다.</li>
+  <li><code class="highlighter-rouge">tensorpack_tutorial.ipynb</code>에서는 이 친구를 찾아볼 수 없는데, SimpleTrainer 소스코드를 보니, 자체적으로 안에서 train/test time에 맞춰서 TrainTowerContext라는 것으로 조절하고 있기 때문이었다.</li>
+  <li>사용법은 간단하다.
+    <blockquote>
+      <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">training</span>
+<span class="k">with</span> <span class="n">TowerContext</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">is_training</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+  <span class="c"># call any tensorpack layer</span>
+
+<span class="n">test</span>
+<span class="k">with</span> <span class="n">TowerContext</span><span class="p">(</span><span class="s">'name or empty'</span><span class="p">,</span> <span class="n">is_training</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+  <span class="c"># build the graph again</span>
+</code></pre></div>      </div>
+    </blockquote>
+  </li>
+  <li>그래서, 내가 세운 모델을 외부에서 사용하고 싶을 때, 즉, 나만의 Trainer를 새로 정의해서 train/test time때, 다르게 동작을 해야하는 상황이라면, TowerContext를 적절히 써서 분기시켜줘야 한다.</li>
+  <li>아래는 Tensorpack Github에서 제공하는 <a href="https://github.com/tensorpack/tensorpack/blob/master/examples/GAN/GAN.py">GANTrainer</a>에서 실제로 TowerContext를 어떻게 설정해주는지 보여주는 예시다.</li>
+</ul>
+
+<blockquote>
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">GANTrainer</span><span class="p">(</span><span class="n">TowerTrainer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="o">..</span>
+    <span class="o">...</span>
+    
+    <span class="c"># Build the graph</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tower_func</span> <span class="o">=</span> <span class="n">TowerFuncWrapper</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">build_graph</span><span class="p">,</span> <span class="n">inputs_desc</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">TowerContext</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">is_training</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tower_func</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="o">.</span><span class="n">get_input_tensors</span><span class="p">())</span>
+        <span class="n">opt</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_optimizer</span><span class="p">()</span>
+    <span class="o">...</span> 
+</code></pre></div>  </div>
+</blockquote>
+
+<h2 id="thank-you-">Thank you 🙇</h2>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/assets/images/peter_cha.jpg" alt="peter_cha" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/author/peter_cha">차예솔</a></h4>
+                                
+                                    <p>딥러닝을 공부 할수록, 요리사가 새로운 도구를 사는 것 같은 설레임을 느끼는 중 입니다. 딥러닝은 생업으로 하고 있습니다.</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/author/peter_cha">Read More</a>
+                        </div>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+
+        </article>
+	<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+	</script>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+                    <article class="read-next-card"
+                        
+                            style="background-image: url(/assets/images/blog-cover.jpg)"
+                        
+                    >
+                        <header class="read-next-card-header">
+                            <small class="read-next-card-header-sitetitle">&mdash; 바이오메디컬랩@모두의연구소 &mdash;</small>
+                            
+                                <h3 class="read-next-card-header-title"><a href="/tag/개념-정리/">개념 정리</a></h3>
+                            
+                        </header>
+                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
+</div>
+                        <div class="read-next-card-content">
+                            <ul>
+                                
+                                
+                                  
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/Bias_vs_Variance">Bias vs. Variance 개념 정리</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                            </ul>
+                        </div>
+                        <footer class="read-next-card-footer">
+                            <a href="/tag/개념-정리/">
+                                
+                                    See all 1 posts  →
+                                
+                            </a>
+                        </footer>
+                    </article>
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/FusionNet">
+                <div class="post-card-image" style="background-image: url(/assets/images/posts/2018-05-04-Fusion_Net/fusion-net_3.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/FusionNet">
+                <header class="post-card-header">
+                    
+                        
+                            
+                                <span class="post-card-tags">논문 리뷰</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">FusionNet</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    <p>FusionNet FusionNet은 U-Net처럼 Semantic Segmentation에 활용 할 수 있는 모델입니다. 이름이 FusionNet인 이유는 아마도 Encoder에 있는 Layer를 가져와 Decoder에 결합(Fusion)하는 방법이 이 모델에 가장 특징적인 부분이기 때문인 것 같습니다. U-Net과 유사한 부분이 많기</p>
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/kyungmo_kim.jpeg" alt="김경모" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/kyungmo_kim/">김경모</a>
+                        </span>
+                    
+                
+                    
+                
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="http://localhost:20010/">
+            
+                <img src="/assets/images/favicon.png" alt="바이오메디컬랩@모두의연구소 icon" />
+            
+            <span>바이오메디컬랩@모두의연구소</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">TensorPack</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=TensorPack&amp;url=https://myJekyll.github.io/jasper2/TensorPack"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://myJekyll.github.io/jasper2/TensorPack"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="http://localhost:20010/">바이오메디컬랩@모두의연구소</a> &copy; 2018</section>
+                <nav class="site-footer-nav">
+                    <a href="/">최신글</a>
+                    
+                    
+                    <a href="http://www.modulabs.co.kr" target="_blank" rel="noopener">모두의 연구소</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69281367-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

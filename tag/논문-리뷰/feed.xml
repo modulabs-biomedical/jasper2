@@ -3,9 +3,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
    
-      <title>http://localhost:4000/</title>
+      <title>http://localhost:20010/</title>
    
-   <link>http://localhost:4000/</link>
+   <link>http://localhost:20010/</link>
    <description>모두의연구소 바이오메디컬랩 기술 블로그입니다.</description>
    <language>en-uk</language>
    
@@ -15,21 +15,21 @@
    <description>
    <![CDATA[ 모두의연구소 바이오메디컬랩 기술 블로그입니다. ]]>
    </description>
-   <link>http://localhost:4000/</link>
+   <link>http://localhost:20010/</link>
    <image>
-   <url>http://localhost:4000/assets/images/favicon.png</url>
+   <url>http://localhost:20010/assets/images/favicon.png</url>
    <title>바이오메디컬랩@모두의연구소</title>
-   <link>http://localhost:4000/</link>
+   <link>http://localhost:20010/</link>
    </image>
    <generator>Jekyll 3.6.2</generator>
    <lastBuildDate></lastBuildDate>
-   <atom:link href="http://localhost:4000/rss.xml" rel="self" type="application/rss+xml"/>
+   <atom:link href="http://localhost:20010/rss.xml" rel="self" type="application/rss+xml"/>
    <ttl>60</ttl>
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
 	  <title>FusionNet</title>
-	  <link>http://localhost:4000/FusionNet</link>
+	  <link>http://localhost:20010/FusionNet</link>
 		
 				
 		
@@ -52,7 +52,7 @@
 				
 		
 	  <pubDate>2018-05-04T09:00:00+09:00</pubDate>
-	  <guid>http://localhost:4000/FusionNet</guid>
+	  <guid>http://localhost:20010/FusionNet</guid>
 	  <description><![CDATA[
 	     <h1 id="fusionnet"><strong>FusionNet</strong></h1>
 
@@ -142,7 +142,7 @@
 
 	<item>
 	  <title>U-Net</title>
-	  <link>http://localhost:4000/U_Net</link>
+	  <link>http://localhost:20010/U_Net</link>
 		
 				
 		
@@ -165,7 +165,7 @@
 				
 		
 	  <pubDate>2018-04-02T09:00:00+09:00</pubDate>
-	  <guid>http://localhost:4000/U_Net</guid>
+	  <guid>http://localhost:20010/U_Net</guid>
 	  <description><![CDATA[
 	     <p>논문 링크 : <a href="https://arxiv.org/pdf/1505.04597.pdf">U-Net: Convolutional Networks for Biomedical Image Segmentation</a></p>
 
@@ -343,7 +343,7 @@ UpSampling시에는 1024 채널 -&gt; 64채널을 사용하고 있습니다.</p>
 
 	<item>
 	  <title>Learning Deconvolution Network for Semantic Segmentation</title>
-	  <link>http://localhost:4000/Learning_Deconvolution_Network_for_Semantic_Segmentation</link>
+	  <link>http://localhost:20010/Learning_Deconvolution_Network_for_Semantic_Segmentation</link>
 		
 				
 		
@@ -366,7 +366,7 @@ UpSampling시에는 1024 채널 -&gt; 64채널을 사용하고 있습니다.</p>
 				
 		
 	  <pubDate>2018-01-03T09:00:00+09:00</pubDate>
-	  <guid>http://localhost:4000/Learning_Deconvolution_Network_for_Semantic_Segmentation</guid>
+	  <guid>http://localhost:20010/Learning_Deconvolution_Network_for_Semantic_Segmentation</guid>
 	  <description><![CDATA[
 	     <p><a href="http://arxiv.org/abs/1505.04366">Noh, H., Hong, S., and Han, B. Learning Deconvolution Network for Semantic Segmentation. ICCV, 2015.</a></p>
 
@@ -430,7 +430,7 @@ UpSampling시에는 1024 채널 -&gt; 64채널을 사용하고 있습니다.</p>
 
 	<item>
 	  <title>Fully Convolutional Networks for Semantic Segmentation</title>
-	  <link>http://localhost:4000/FCN</link>
+	  <link>http://localhost:20010/FCN</link>
 		
 				
 						<author>김승일</author>
@@ -453,7 +453,7 @@ UpSampling시에는 1024 채널 -&gt; 64채널을 사용하고 있습니다.</p>
 				
 		
 	  <pubDate>2017-12-21T19:00:00+09:00</pubDate>
-	  <guid>http://localhost:4000/FCN</guid>
+	  <guid>http://localhost:20010/FCN</guid>
 	  <description><![CDATA[
 	     <p>논문 링크 : <a href="https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf">Fully Convolutional Networks for Semantic Segmentation</a></p>
 
