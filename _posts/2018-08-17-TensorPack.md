@@ -1,9 +1,9 @@
 ---
 layout: post
 current: post
-cover:  assets/images/posts/2018-08-17-TensorPack/tensorpack.png
+cover:  assets/images/posts/2018-08-17-Tensorpack/tensorpack.png
 navigation: True
-title: TensorPack
+title: Tensorpack
 date: 2018-08-17 00:00:00
 tags: [개념 정리]
 class: post-template
