@@ -98,7 +98,7 @@
   <li>
     <p>후에 <code class="highlighter-rouge">InputDesc</code>로 변환될, <code class="highlighter-rouge">tf.placeholder</code>들을 return 한다.</p>
 
-    <p><img src="../assets/images/posts/2018-08-17-TensorPack/modeldesc.png" alt="u-net_fig_2" /></p>
+    <p><img src="../assets/images/posts/2018-08-17-Tensorpack/modeldesc.png" alt="tensorpack-fig1" /></p>
   </li>
 </ul>
 
@@ -184,7 +184,7 @@ access the tower handles by either indices or names.</p>
   <li>
     <p>각각의 <code class="highlighter-rouge">layer</code>와 <code class="highlighter-rouge">attributes</code>에 이 <code class="highlighter-rouge">towers</code>함수를 호출하면 접근할 수 있게 된다! 아래는 예시.</p>
 
-    <p><img src="../assets/images/posts/2018-08-17-TensorPack/3-4.png" alt="u-net_fig_2" /></p>
+    <p><img src="../assets/images/posts/2018-08-17-Tensorpack/3-4.png" alt="tensorpack-fig2" /></p>
 
     <p>​</p>
   </li>
@@ -223,7 +223,7 @@ access the tower handles by either indices or names.</p>
 <h6 id="42-steps_per_epoch">4.2. steps_per_epoch</h6>
 <ul>
   <li>한 에폭당 steps은 총 몇 번인지.
-<img src="../assets/images/posts/2018-08-17-TensorPack/sample.png" alt="u-net_fig_2" /></li>
+<img src="../assets/images/posts/2018-08-17-Tensorpack/sample.png" alt="tensorpack-fig3" /></li>
 </ul>
 
 <h6 id="43-register_callbackcb">4.3. register_callback(cb)</h6>
@@ -253,7 +253,7 @@ access the tower handles by either indices or names.</p>
   </li>
 </ul>
 
-<p><img src="../assets/images/posts/2018-08-17-TensorPack/5-1.png" alt="u-net_fig_2" /></p>
+<p><img src="../assets/images/posts/2018-08-17-Tensorpack/5-1.png" alt="tensorpack-fig4" /></p>
 
 <p>​</p>
 
@@ -264,7 +264,7 @@ access the tower handles by either indices or names.</p>
   <li>
     <p>아래는 Tensorpack Github에서 제공하는 <a href="https://github.com/tensorpack/tensorpack/blob/master/examples/GAN/GAN.py">GANTrainer</a>에서 실제로 TowerContext를 어떻게 설정해주는지 보여주는 예시다.</p>
 
-    <p><img src="../assets/images/posts/2018-08-17-TensorPack/5-2.png" alt="u-net_fig_2" /></p>
+    <p><img src="../assets/images/posts/2018-08-17-Tensorpack/5-2.png" alt="tensorpack-fig5" /></p>
 
     <p>​</p>
   </li>

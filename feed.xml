@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-08-20T16:16:40+09:00</updated><id>http://localhost:4000/</id><title type="html">바이오메디컬랩@모두의연구소</title><subtitle>모두의연구소 바이오메디컬랩 기술 블로그입니다.</subtitle><entry><title type="html">Tensorpack</title><link href="http://localhost:4000/TensorPack" rel="alternate" type="text/html" title="Tensorpack" /><published>2018-08-17T09:00:00+09:00</published><updated>2018-08-17T09:00:00+09:00</updated><id>http://localhost:4000/TensorPack</id><content type="html" xml:base="http://localhost:4000/TensorPack">&lt;h2 id=&quot;tensorpack-구조-이해하기&quot;&gt;Tensorpack 구조 이해하기&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-08-20T20:08:34+09:00</updated><id>http://localhost:4000/</id><title type="html">바이오메디컬랩@모두의연구소</title><subtitle>모두의연구소 바이오메디컬랩 기술 블로그입니다.</subtitle><entry><title type="html">Tensorpack</title><link href="http://localhost:4000/TensorPack" rel="alternate" type="text/html" title="Tensorpack" /><published>2018-08-17T09:00:00+09:00</published><updated>2018-08-17T09:00:00+09:00</updated><id>http://localhost:4000/TensorPack</id><content type="html" xml:base="http://localhost:4000/TensorPack">&lt;h2 id=&quot;tensorpack-구조-이해하기&quot;&gt;Tensorpack 구조 이해하기&lt;/h2&gt;
 
 &lt;h6 id=&quot;modeldesc와-trainer를-중심으로&quot;&gt;ModelDesc와 Trainer를 중심으로&lt;/h6&gt;
 
@@ -42,7 +42,7 @@
   &lt;li&gt;
     &lt;p&gt;후에 &lt;code class=&quot;highlighter-rouge&quot;&gt;InputDesc&lt;/code&gt;로 변환될, &lt;code class=&quot;highlighter-rouge&quot;&gt;tf.placeholder&lt;/code&gt;들을 return 한다.&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;../assets/images/posts/2018-08-17-TensorPack/modeldesc.png&quot; alt=&quot;u-net_fig_2&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;../assets/images/posts/2018-08-17-Tensorpack/modeldesc.png&quot; alt=&quot;tensorpack-fig1&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -128,7 +128,7 @@ access the tower handles by either indices or names.&lt;/p&gt;
   &lt;li&gt;
     &lt;p&gt;각각의 &lt;code class=&quot;highlighter-rouge&quot;&gt;layer&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;attributes&lt;/code&gt;에 이 &lt;code class=&quot;highlighter-rouge&quot;&gt;towers&lt;/code&gt;함수를 호출하면 접근할 수 있게 된다! 아래는 예시.&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;../assets/images/posts/2018-08-17-TensorPack/3-4.png&quot; alt=&quot;u-net_fig_2&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;../assets/images/posts/2018-08-17-Tensorpack/3-4.png&quot; alt=&quot;tensorpack-fig2&quot; /&gt;&lt;/p&gt;
 
     &lt;p&gt;​&lt;/p&gt;
   &lt;/li&gt;
@@ -167,7 +167,7 @@ access the tower handles by either indices or names.&lt;/p&gt;
 &lt;h6 id=&quot;42-steps_per_epoch&quot;&gt;4.2. steps_per_epoch&lt;/h6&gt;
 &lt;ul&gt;
   &lt;li&gt;한 에폭당 steps은 총 몇 번인지.
-&lt;img src=&quot;../assets/images/posts/2018-08-17-TensorPack/sample.png&quot; alt=&quot;u-net_fig_2&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;../assets/images/posts/2018-08-17-Tensorpack/sample.png&quot; alt=&quot;tensorpack-fig3&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h6 id=&quot;43-register_callbackcb&quot;&gt;4.3. register_callback(cb)&lt;/h6&gt;
@@ -197,7 +197,7 @@ access the tower handles by either indices or names.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;../assets/images/posts/2018-08-17-TensorPack/5-1.png&quot; alt=&quot;u-net_fig_2&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../assets/images/posts/2018-08-17-Tensorpack/5-1.png&quot; alt=&quot;tensorpack-fig4&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;​&lt;/p&gt;
 
@@ -208,7 +208,7 @@ access the tower handles by either indices or names.&lt;/p&gt;
   &lt;li&gt;
     &lt;p&gt;아래는 Tensorpack Github에서 제공하는 &lt;a href=&quot;https://github.com/tensorpack/tensorpack/blob/master/examples/GAN/GAN.py&quot;&gt;GANTrainer&lt;/a&gt;에서 실제로 TowerContext를 어떻게 설정해주는지 보여주는 예시다.&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;../assets/images/posts/2018-08-17-TensorPack/5-2.png&quot; alt=&quot;u-net_fig_2&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;../assets/images/posts/2018-08-17-Tensorpack/5-2.png&quot; alt=&quot;tensorpack-fig5&quot; /&gt;&lt;/p&gt;
 
     &lt;p&gt;​&lt;/p&gt;
   &lt;/li&gt;
