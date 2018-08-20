@@ -43,7 +43,7 @@ author: peter_cha
 
 * 후에 `InputDesc`로 변환될, `tf.placeholder`들을 return 한다.
 
-  ![u-net_fig_2](../assets/images/posts/2018-08-17-TensorPack/modeldesc.png)
+  ![tensorpack-fig1](../assets/images/posts/2018-08-17-Tensorpack/modeldesc.png)
 
 ###### 1.3. get_inputs_desc
 
@@ -99,7 +99,7 @@ author: peter_cha
 
 * 각각의 `layer`와 `attributes`에 이 `towers`함수를 호출하면 접근할 수 있게 된다! 아래는 예시.
 
-  ![u-net_fig_2](../assets/images/posts/2018-08-17-TensorPack/3-4.png)
+  ![tensorpack-fig2](../assets/images/posts/2018-08-17-Tensorpack/3-4.png)
 
   ​
 
@@ -123,7 +123,7 @@ author: peter_cha
 
 ###### 4.2. steps_per_epoch
 * 한 에폭당 steps은 총 몇 번인지.
-  ![u-net_fig_2](../assets/images/posts/2018-08-17-TensorPack/sample.png)
+  ![tensorpack-fig3](../assets/images/posts/2018-08-17-Tensorpack/sample.png)
 
 ###### 4.3. register_callback(cb)
 
@@ -144,7 +144,7 @@ author: peter_cha
 
  * 사용법은 간단하다. 
 
-  ![u-net_fig_2](../assets/images/posts/2018-08-17-TensorPack/5-1.png)
+  ![tensorpack-fig4](../assets/images/posts/2018-08-17-Tensorpack/5-1.png)
 
   ​
 
@@ -152,7 +152,7 @@ author: peter_cha
 
 - 아래는 Tensorpack Github에서 제공하는 [GANTrainer](https://github.com/tensorpack/tensorpack/blob/master/examples/GAN/GAN.py)에서 실제로 TowerContext를 어떻게 설정해주는지 보여주는 예시다. 
 
-  ![u-net_fig_2](../assets/images/posts/2018-08-17-TensorPack/5-2.png)
+  ![tensorpack-fig5](../assets/images/posts/2018-08-17-Tensorpack/5-2.png)
 
   ​
 
