@@ -4,20 +4,20 @@
     <title> - Articles</title>
     <description>모두의연구소 바이오메디컬랩 기술 블로그입니다.</description>
     <link>
-    http://localhost:20010</link>
+    http://localhost:4000</link>
     
       
       <item>
         <title>TensorPack</title>
         
-          <description>&lt;h1 id=&quot;tensorpack-구조-이해하기&quot;&gt;Tensorpack 구조 이해하기&lt;/h1&gt;
+          <description>&lt;h2 id=&quot;tensorpack-구조-이해하기&quot;&gt;Tensorpack 구조 이해하기&lt;/h2&gt;
 
 </description>
         
         <pubDate>Fri, 17 Aug 2018 09:00:00 +0900</pubDate>
         <link>
-        http://localhost:20010/TensorPack</link>
-        <guid isPermaLink="true">http://localhost:20010/TensorPack</guid>
+        http://localhost:4000/TensorPack</link>
+        <guid isPermaLink="true">http://localhost:4000/TensorPack</guid>
       </item>
       
     
@@ -111,8 +111,8 @@
         
         <pubDate>Fri, 04 May 2018 09:00:00 +0900</pubDate>
         <link>
-        http://localhost:20010/FusionNet</link>
-        <guid isPermaLink="true">http://localhost:20010/FusionNet</guid>
+        http://localhost:4000/FusionNet</link>
+        <guid isPermaLink="true">http://localhost:4000/FusionNet</guid>
       </item>
       
     
@@ -126,8 +126,8 @@
         
         <pubDate>Mon, 02 Apr 2018 09:00:00 +0900</pubDate>
         <link>
-        http://localhost:20010/U_Net</link>
-        <guid isPermaLink="true">http://localhost:20010/U_Net</guid>
+        http://localhost:4000/U_Net</link>
+        <guid isPermaLink="true">http://localhost:4000/U_Net</guid>
       </item>
       
     
@@ -141,8 +141,8 @@
         
         <pubDate>Thu, 25 Jan 2018 09:00:00 +0900</pubDate>
         <link>
-        http://localhost:20010/Bias_vs_Variance</link>
-        <guid isPermaLink="true">http://localhost:20010/Bias_vs_Variance</guid>
+        http://localhost:4000/Bias_vs_Variance</link>
+        <guid isPermaLink="true">http://localhost:4000/Bias_vs_Variance</guid>
       </item>
       
     
@@ -156,8 +156,8 @@
         
         <pubDate>Wed, 03 Jan 2018 09:00:00 +0900</pubDate>
         <link>
-        http://localhost:20010/Learning_Deconvolution_Network_for_Semantic_Segmentation</link>
-        <guid isPermaLink="true">http://localhost:20010/Learning_Deconvolution_Network_for_Semantic_Segmentation</guid>
+        http://localhost:4000/Learning_Deconvolution_Network_for_Semantic_Segmentation</link>
+        <guid isPermaLink="true">http://localhost:4000/Learning_Deconvolution_Network_for_Semantic_Segmentation</guid>
       </item>
       
     
@@ -171,8 +171,8 @@
         
         <pubDate>Thu, 21 Dec 2017 19:00:00 +0900</pubDate>
         <link>
-        http://localhost:20010/FCN</link>
-        <guid isPermaLink="true">http://localhost:20010/FCN</guid>
+        http://localhost:4000/FCN</link>
+        <guid isPermaLink="true">http://localhost:4000/FCN</guid>
       </item>
       
     

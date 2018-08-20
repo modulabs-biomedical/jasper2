@@ -3,9 +3,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
    
-      <title>http://localhost:20010/</title>
+      <title>http://localhost:4000/</title>
    
-   <link>http://localhost:20010/</link>
+   <link>http://localhost:4000/</link>
    <description>모두의연구소 바이오메디컬랩 기술 블로그입니다.</description>
    <language>en-uk</language>
    
@@ -39,21 +39,21 @@
    <description>
    <![CDATA[ 모두의연구소 바이오메디컬랩 기술 블로그입니다. ]]>
    </description>
-   <link>http://localhost:20010/</link>
+   <link>http://localhost:4000/</link>
    <image>
-   <url>http://localhost:20010/assets/images/favicon.png</url>
+   <url>http://localhost:4000/assets/images/favicon.png</url>
    <title>홍규석 - 바이오메디컬랩@모두의연구소</title>
-   <link>http://localhost:20010/</link>
+   <link>http://localhost:4000/</link>
    </image>
    <generator>Jekyll 3.6.2</generator>
    <lastBuildDate></lastBuildDate>
-   <atom:link href="http://localhost:20010/author/hks/rss.xml" rel="self" type="application/rss+xml"/>
+   <atom:link href="http://localhost:4000/author/hks/rss.xml" rel="self" type="application/rss+xml"/>
    <ttl>60</ttl>
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
 	  <title>Bias vs. Variance 개념 정리</title>
-	  <link>http://localhost:20010/Bias_vs_Variance</link>
+	  <link>http://localhost:4000/Bias_vs_Variance</link>
 		
 				
 		
@@ -76,7 +76,7 @@
 				
 		
 	  <pubDate>2018-01-25T09:00:00+09:00</pubDate>
-	  <guid>http://localhost:20010/Bias_vs_Variance</guid>
+	  <guid>http://localhost:4000/Bias_vs_Variance</guid>
 	  <description><![CDATA[
 	     <p>이 글에서 bias와 variance에 대해 살펴보려고 합니다. bias와 variance는 이미 많은 글이나 블로그에서 개념적으로 잘 설명되어 있습니다. 그럼에도 불구하고 다시 정리해보는 이유는 개념적으로 어느정도 이해는 되는데 좀 더 자세하게 보려고 하면, 블로그들의 예제들 간의 연결이 막혀서 헷갈리는 부분이 있어 이 글을 통해 확실히 이해하기 위해서 입니다.</p>
 

@@ -3,9 +3,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
    
-      <title>http://localhost:20010/</title>
+      <title>http://localhost:4000/</title>
    
-   <link>http://localhost:20010/</link>
+   <link>http://localhost:4000/</link>
    <description>모두의연구소 바이오메디컬랩 기술 블로그입니다.</description>
    <language>en-uk</language>
    
@@ -39,21 +39,21 @@
    <description>
    <![CDATA[ 모두의연구소 바이오메디컬랩 기술 블로그입니다. ]]>
    </description>
-   <link>http://localhost:20010/</link>
+   <link>http://localhost:4000/</link>
    <image>
-   <url>http://localhost:20010/assets/images/favicon.png</url>
+   <url>http://localhost:4000/assets/images/favicon.png</url>
    <title>차예솔 - 바이오메디컬랩@모두의연구소</title>
-   <link>http://localhost:20010/</link>
+   <link>http://localhost:4000/</link>
    </image>
    <generator>Jekyll 3.6.2</generator>
    <lastBuildDate></lastBuildDate>
-   <atom:link href="http://localhost:20010/author/peter_cha/rss.xml" rel="self" type="application/rss+xml"/>
+   <atom:link href="http://localhost:4000/author/peter_cha/rss.xml" rel="self" type="application/rss+xml"/>
    <ttl>60</ttl>
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
 	  <title>TensorPack</title>
-	  <link>http://localhost:20010/TensorPack</link>
+	  <link>http://localhost:4000/TensorPack</link>
 		
 				
 		
@@ -76,35 +76,36 @@
 				
 		
 	  <pubDate>2018-08-17T09:00:00+09:00</pubDate>
-	  <guid>http://localhost:20010/TensorPack</guid>
+	  <guid>http://localhost:4000/TensorPack</guid>
 	  <description><![CDATA[
-	     <h1 id="tensorpack-구조-이해하기">Tensorpack 구조 이해하기</h1>
+	     <h2 id="tensorpack-구조-이해하기">Tensorpack 구조 이해하기</h2>
 
-<h5 id="modeldesc와-trainer를-중심으로">ModelDesc와 Trainer를 중심으로</h5>
+<h6 id="modeldesc와-trainer를-중심으로">ModelDesc와 Trainer를 중심으로</h6>
 
-<h3 id="peter-cha">Peter Cha</h3>
+<h6 id="peter-cha">Peter Cha</h6>
 
-<h2 id="tensorpack을-공부하면-">Tensorpack을 공부하면, 😐</h2>
+<h4 id="tensorpack을-공부하면-">Tensorpack을 공부하면, 😐</h4>
 
 <ul>
   <li>우선 모르는 것들 투성이다. 알고나면 너무 쓰기 편하지만, 처음 접할 때는 너무 많이 추상화 된 API에 ‘이게 tensorflow는 맞는지..’할 정도니까.</li>
   <li>우선 이 튜토리얼을 보기 전, 필자의 <a href="https://github.com/PeterCha90/Tensorflow-Deep-Learning/blob/master/Tensorpack_tutorial.ipynb"><code class="highlighter-rouge">tensorpack_tutorial.ipynb</code></a>를 먼저 보길 바란다. 대략적인 dataflow는 데이터를 불러오는 부분으로 이해를 마쳤다고 생각하고, dataflow부분은 생략하고 설명을 진행하도록 하겠다.</li>
   <li>이번에는 Model의 선언하게 될 때 상속받은 <strong><code class="highlighter-rouge">ModelDesc</code></strong> class와, 학습을 실행하는 Trainer들의 모태가 되는 <strong><code class="highlighter-rouge">TowerTrainer</code></strong> 에 대해 알아보고자 한다.<code class="highlighter-rouge">tensorpack_tutorial.ipynb</code>에서 설명에 해당하는 부분을 함께 찾아보면 이해에 도움이 더 될 것 같다.</li>
-  <li>이 Tutorial은 Tensorpack <a href="https://tensorpack.readthedocs.io/modules/train.html?highlight=TowerFuncWrapper">documentation</a>을 참고해서 만들었다.</li>
+  <li>이 Tutorial은 Tensorpack <a href="https://tensorpack.readthedocs.io/modules/train.html?highlight=TowerFuncWrapper">documentation</a>을 참고해서 만들었다.
+    <hr />
+  </li>
 </ul>
 
-<p><br /></p>
-
-<h2 id="1-class-modeldescbase-">1. Class <code class="highlighter-rouge">ModelDescBase</code> 😏</h2>
+<h3 id="1-class-modeldescbase-">1. Class <code class="highlighter-rouge">ModelDescBase</code> 😏</h3>
 
 <blockquote>
   <p>Base class for a model description이다.</p>
-  <ul>
-    <li><code class="highlighter-rouge">ModelDesc</code>는 ModelDescBase를 기반으로 만들어졌기 때문에, <code class="highlighter-rouge">ModelDescBase</code>를 먼저 설명한다.</li>
-  </ul>
 </blockquote>
 
-<h3 id="11-build_graphargs">1.1. build_graph(*args)</h3>
+<ul>
+  <li><code class="highlighter-rouge">ModelDesc</code>는 ModelDescBase를 기반으로 만들어졌기 때문에, <code class="highlighter-rouge">ModelDescBase</code>를 먼저 설명한다.</li>
+</ul>
+
+<h6 id="11-build_graphargs">1.1. build_graph(*args)</h6>
 
 <ul>
   <li>모든 symbolic graph (<strong>Model의 형태</strong>)를 Build한다. 이 함수가 뒤에서 설명할 <code class="highlighter-rouge">TowerTrainer</code>에서 <code class="highlighter-rouge">tower function</code>의 일부분이다.</li>
@@ -112,49 +113,53 @@
   <li>아무것도 리턴하지 않는다.</li>
 </ul>
 
-<h3 id="12-inputs">1.2. inputs()</h3>
+<h6 id="12-inputs">1.2. inputs()</h6>
 
 <ul>
-  <li>Model에서 input으로 받을 텐서들의 placeholder들을 정의하는 함수다.</li>
-  <li>후에 <code class="highlighter-rouge">InputDesc</code>로 변환될, <code class="highlighter-rouge">tf.placeholder</code>들을 return 한다.</li>
+  <li>
+    <p>Model에서 input으로 받을 텐서들의 placeholder들을 정의하는 함수다.</p>
+  </li>
+  <li>
+    <p>후에 <code class="highlighter-rouge">InputDesc</code>로 변환될, <code class="highlighter-rouge">tf.placeholder</code>들을 return 한다.</p>
+
+    <p><img src="../assets/images/posts/2018-08-17-TensorPack/modeldesc.png" alt="u-net_fig_2" /></p>
+  </li>
 </ul>
 
-<p><img src="../assets/images/posts/2018-08-17-TensorPack/modeldesc.png" alt="u-net_fig_2" /></p>
-
-<h3 id="13-get_inputs_desc">1.3. get_inputs_desc</h3>
+<h6 id="13-get_inputs_desc">1.3. get_inputs_desc</h6>
 
 <ul>
-  <li>이름에서 알 수 있듯이, inputs()에서 정의된 모양대로 생긴 InputDesc를 list로 반환하는 함수다.</li>
+  <li>이름에서 알 수 있듯이, inputs()에서 정의된 모양대로 생긴 InputDesc를 list로 반환하는 함수다.
+    <hr />
+  </li>
 </ul>
 
-<p><br /></p>
-
-<h2 id="2-class-modeldesc-">2. Class <code class="highlighter-rouge">ModelDesc</code> 😎</h2>
-
+<h3 id="2-class-modeldesc-">2. Class <code class="highlighter-rouge">ModelDesc</code> 😎</h3>
 <ul>
   <li><strong>주의사항</strong>: <strong>build_graph()를 꼭 cost를 return하도록</strong> 코딩해야 한다.</li>
-  <li>앞에서 설명한 ModelDescBase를 상속받은 터라, 위의 3가지는 함수는 내장하고 있다.
-    <h3 id="21-optimizer">2.1. optimizer()</h3>
-  </li>
-  <li><code class="highlighter-rouge">tf.train.Optimizer</code>를 여기에 선언해주고 Return하게끔 함수를 짜준다.
-    <h3 id="22-get_optimizer">2.2. get_optimizer()</h3>
-  </li>
-  <li>optimizer()를 호출하면, 계속 새로 optimizer를 만들어서 생성하는데, 이 함수를 쓰면 이미 optimizer()를 통해 생긴 optimizer를 기록해 놓았다가 반환시켜준다.</li>
+  <li>앞에서 설명한 ModelDescBase를 상속받은 터라, 위의 3가지는 함수는 내장하고 있다.</li>
 </ul>
 
-<p><br /></p>
-
-<h2 id="3-class-towertrainer-">3. Class <code class="highlighter-rouge">TowerTrainer</code> 😶</h2>
-
-<h3 id="tensorpack에서는">Tensorpack에서는,</h3>
-
+<h6 id="21-optimizer">2.1. optimizer()</h6>
 <ul>
-  <li>우리가 흔히 말하는 Model을 계속 Tower라고 지칭한다.(왜 그런지 모르겠다. 😶)</li>
+  <li><code class="highlighter-rouge">tf.train.Optimizer</code>를 여기에 선언해주고 Return하게끔 함수를 짜준다.</li>
+</ul>
+
+<h6 id="22-get_optimizer">2.2. get_optimizer()</h6>
+<ul>
+  <li>optimizer()를 호출하면, 계속 새로 optimizer를 만들어서 생성하는데, 이 함수를 쓰면 이미 optimizer()를 통해 생긴 optimizer를 기록해 놓았다가 반환시켜준다.
+    <hr />
+  </li>
+</ul>
+
+<h3 id="3-class-towertrainer-">3. Class <code class="highlighter-rouge">TowerTrainer</code> 😶</h3>
+<ul>
+  <li>Tensorpack에서는, 우리가 흔히 말하는 Model을 계속 Tower라고 지칭한다.(왜 그런지 모르겠다. 😶)</li>
   <li>그래서 아래에서 나오는 <code class="highlighter-rouge">TowerTrainer</code>는 만든 모델을 학습을 시키는 <strong>Trainer</strong>고, 그 트레이너가 어떤 특징들을 가진 함수들을 들고 다니는지 생각하면 이해가 쉽다.</li>
   <li>기본적으로 Tensorpack에 나오는 모든 Trainer들은 <code class="highlighter-rouge">TowerTrainer</code>의 subclass다 이 개념이 그래서 궁극적으로는 모든 neural-network training을 가능하게 해준다.</li>
 </ul>
 
-<h3 id="31-get_predictorinput_names-output_names-device0">3.1. <code class="highlighter-rouge">get_predictor</code>(input_names, output_names, device=0)</h3>
+<h6 id="31-get_predictorinput_names-output_names-device0">3.1. <code class="highlighter-rouge">get_predictor</code>(input_names, output_names, device=0)</h6>
 
 <blockquote>
   <p>Returns a callable predictor built under <code class="highlighter-rouge">TowerContext(is_training=False)</code>.</p>
@@ -166,7 +171,8 @@
   <li>파라미터로 들어가는 input, output이름은 모델 안에서 선언된 이름이 아니면 안 돌아가니까 조심.</li>
 </ul>
 
-<h3 id="32-inputs_desc">3.2. inputs_desc</h3>
+<h6 id="32-inputs_desc">3.2. inputs_desc</h6>
+
 <blockquote>
   <p>Returns – list[InputDesc]: metainfo about the inputs to the tower.</p>
 </blockquote>
@@ -175,45 +181,52 @@
   <li>말 그대로, 모델에 들어갈 Input의 크기와 같은 정보가 들어있는 list를 반환해준다.</li>
 </ul>
 
-<h3 id="33-tower_func">3.3. tower_func</h3>
+<h6 id="33-tower_func">3.3. tower_func</h6>
+
 <blockquote>
   <p>Build Model.</p>
-  <ul>
-    <li>이 친구가 실제 <strong>모델을 정의하고, Build</strong>할 수 있는 함수를 세팅하는 부분!</li>
-    <li><strong><code class="highlighter-rouge">ModelDesc</code></strong> interface로 정의된 model을 trainer로 돌려야 하는 상황이 자주 발생할 수 있는데, 이 때, <u>ModelDesc에서 선언된 **build_graph 함수**가 이 역할을 대신</u>해 줄 수 있다.</li>
-  </ul>
 </blockquote>
 
-<h3 id="34-towers">3.4. towers</h3>
+<ul>
+  <li>이 친구가 실제 <strong>모델을 정의하고, Build</strong>할 수 있는 함수를 세팅하는 부분!</li>
+  <li><strong><code class="highlighter-rouge">ModelDesc</code></strong> interface로 정의된 model을 trainer로 돌려야 하는 상황이 자주 발생할 수 있는데, 이 때, <u>ModelDesc에서 선언된 **build_graph 함수**가 이 역할을 대신</u>해 줄 수 있다.</li>
+</ul>
+
+<h6 id="34-towers">3.4. towers</h6>
 <blockquote>
   <p>Returns – a TowerTensorHandles object, to
 access the tower handles by either indices or names.</p>
-  <ul>
-    <li>모델 및 Train 전반에 걸쳐 관련된 변수들에 접근하고 싶을 때 사용한다! 그래서 이 함수는 Transfer learning을 할 때 유용할 거 같다.</li>
-    <li>이미 <strong>모델 그래프가 Set up이 끝난 뒤에만</strong> 이 함수는 호출될 수 있다.</li>
-    <li>각각의 <code class="highlighter-rouge">layer</code>와 <code class="highlighter-rouge">attributes</code>에 이 <code class="highlighter-rouge">towers</code>함수를 호출하면 접근할 수 있게 된다! 아래는 예시.</li>
-  </ul>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Access the conv1/output tensor in the first training tower
-trainer.towers.training()[0].get_tensor('conv1/output')
-</code></pre></div></div>
+<ul>
+  <li>
+    <p>모델 및 Train 전반에 걸쳐 관련된 변수들에 접근하고 싶을 때 사용한다! 그래서 이 함수는 Transfer learning을 할 때 유용할 거 같다.</p>
+  </li>
+  <li>
+    <p>이미 <strong>모델 그래프가 Set up이 끝난 뒤에만</strong> 이 함수는 호출될 수 있다.</p>
+  </li>
+  <li>
+    <p>각각의 <code class="highlighter-rouge">layer</code>와 <code class="highlighter-rouge">attributes</code>에 이 <code class="highlighter-rouge">towers</code>함수를 호출하면 접근할 수 있게 된다! 아래는 예시.</p>
 
-<p><br /></p>
+    <p><img src="../assets/images/posts/2018-08-17-TensorPack/3-4.png" alt="u-net_fig_2" /></p>
 
-<h2 id="4-class-trainer-">4. Class <code class="highlighter-rouge">Trainer</code> 🙄</h2>
+    <p>​</p>
+  </li>
+</ul>
+
+<h3 id="4-class-trainer-">4. Class <code class="highlighter-rouge">Trainer</code> 🙄</h3>
 
 <blockquote>
   <p>Base class for a trainer.</p>
 </blockquote>
 
 <ul>
-  <li>분명히 위에서 금방,</li>
+  <li>분명히 위에서 금방,
+    <blockquote>
+      <p>“기본적으로 Tensorpack에 나오는 모든 Trainer들은 <code class="highlighter-rouge">TowerTrainer</code>의 subclass다”</p>
+    </blockquote>
+  </li>
 </ul>
-
-<blockquote>
-  <p>“기본적으로 Tensorpack에 나오는 모든 Trainer들은 <code class="highlighter-rouge">TowerTrainer</code>의 subclass다”</p>
-</blockquote>
 
 <p>라고 했는데, 이 <code class="highlighter-rouge">TowerTrainer가 상속을 받는 class</code>가 있었으니, 이름하여 TowerTrainer보다 더 단순한 <strong><code class="highlighter-rouge">Trainer</code></strong> 다.</p>
 
@@ -226,65 +239,60 @@ trainer.towers.training()[0].get_tensor('conv1/output')
   <p>아래 1, 2번의 max_epoch과, steps_per_epoch은 <code class="highlighter-rouge">TrainConfig</code>에서 자주 만나는 키워드들인데, 이 친구들이 Trainer의 요소였다.</p>
 </blockquote>
 
-<h3 id="41-max_epoch">4.1. max_epoch</h3>
+<h6 id="41-max_epoch">4.1. max_epoch</h6>
 <ul>
   <li>Epoch은 몇 번 돌릴 것인지</li>
 </ul>
 
-<h3 id="42-steps_per_epoch">4.2. steps_per_epoch</h3>
-
+<h6 id="42-steps_per_epoch">4.2. steps_per_epoch</h6>
 <ul>
-  <li>한 에폭당 steps은 총 몇 번인지.</li>
+  <li>한 에폭당 steps은 총 몇 번인지.
+<img src="../assets/images/posts/2018-08-17-TensorPack/sample.png" alt="u-net_fig_2" /></li>
 </ul>
 
-<p><img src="../assets/images/posts/2018-08-17-TensorPack/sample.png" alt="u-net_fig_2" /></p>
+<h6 id="43-register_callbackcb">4.3. register_callback(cb)</h6>
 
-<h3 id="43-register_callbackcb">4.3. register_callback(cb)</h3>
 <blockquote>
   <p>Register callbacks to the trainer. It can only be called before Trainer.train().</p>
-  <ul>
-    <li><u>Trainer가 모델을 돌릴 때마다(epoch이 진행 됨에 따라), 수행하게 될 부가적인 기능</u>들을 Tensorpack에서는 <strong>callback</strong>이라고 부르고, 대표적인 callback으로 <strong>ModelSaver()</strong> 가 있다.</li>
-    <li>이 Callback을 명시적으로 전달하여 Trainer Object에 세팅할 수 있는 기능이다. 주로 모델을 튜닝할 때, 설정하면서 종종 쓰는 것을 코드 상에서 확인할 수 있다.</li>
-  </ul>
 </blockquote>
-
-<p><br /></p>
-
-<h2 id="5-towercontext-">5. TowerContext 😛</h2>
 
 <ul>
-  <li><strong><code class="highlighter-rouge">TowerContext</code></strong> 는 Training과 Validation 혹은 Test시에 동작이 달라야 하는 <code class="highlighter-rouge">BatchNorm</code>이나, <code class="highlighter-rouge">Dropout</code>을 제어하기 위해서 만들어진 function이다.</li>
-  <li><code class="highlighter-rouge">tensorpack_tutorial.ipynb</code>에서는 이 친구를 찾아볼 수 없는데, SimpleTrainer 소스코드를 보니, 자체적으로 안에서 train/test time에 맞춰서 TrainTowerContext라는 것으로 조절하고 있기 때문이었다.</li>
-  <li>사용법은 간단하다.
-    <blockquote>
-      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>training
-with TowerContext('', is_training=True):
-  # call any tensorpack layer
-
-test
-with TowerContext('name or empty', is_training=False):
-  # build the graph again
-</code></pre></div>      </div>
-    </blockquote>
-  </li>
-  <li>그래서, 내가 세운 모델을 외부에서 사용하고 싶을 때, 즉, 나만의 Trainer를 새로 정의해서 train/test time때, 다르게 동작을 해야하는 상황이라면, TowerContext를 적절히 써서 분기시켜줘야 한다.</li>
-  <li>아래는 Tensorpack Github에서 제공하는 <a href="https://github.com/tensorpack/tensorpack/blob/master/examples/GAN/GAN.py">GANTrainer</a>에서 실제로 TowerContext를 어떻게 설정해주는지 보여주는 예시다.</li>
+  <li><u>Trainer가 모델을 돌릴 때마다(epoch이 진행 됨에 따라), 수행하게 될 부가적인 기능</u>들을 Tensorpack에서는 <strong>callback</strong>이라고 부르고, 대표적인 callback으로 <strong>ModelSaver()</strong> 가 있다.</li>
+  <li>이 Callback을 명시적으로 전달하여 Trainer Object에 세팅할 수 있는 기능이다. 주로 모델을 튜닝할 때, 설정하면서 종종 쓰는 것을 코드 상에서 확인할 수 있다.</li>
 </ul>
 
-<blockquote>
-  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">GANTrainer</span><span class="p">(</span><span class="n">TowerTrainer</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
-    <span class="o">..</span>
-    <span class="o">...</span>
-    
-    <span class="c"># Build the graph</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tower_func</span> <span class="o">=</span> <span class="n">TowerFuncWrapper</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">build_graph</span><span class="p">,</span> <span class="n">inputs_desc</span><span class="p">)</span>
-        <span class="k">with</span> <span class="n">TowerContext</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">is_training</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tower_func</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="o">.</span><span class="n">get_input_tensors</span><span class="p">())</span>
-        <span class="n">opt</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_optimizer</span><span class="p">()</span>
-    <span class="o">...</span> 
-</code></pre></div>  </div>
-</blockquote>
+<hr />
+
+<h3 id="5-towercontext-">5. TowerContext 😛</h3>
+
+<ul>
+  <li>
+    <p><strong><code class="highlighter-rouge">TowerContext</code></strong> 는 Training과 Validation 혹은 Test시에 동작이 달라야 하는 <code class="highlighter-rouge">BatchNorm</code>이나, <code class="highlighter-rouge">Dropout</code>을 제어하기 위해서 만들어진 function이다.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">tensorpack_tutorial.ipynb</code>에서는 이 친구를 찾아볼 수 없는데, SimpleTrainer 소스코드를 보니, 자체적으로 안에서 train/test time에 맞춰서 TrainTowerContext라는 것으로 조절하고 있기 때문이었다.</p>
+  </li>
+  <li>
+    <p>사용법은 간단하다.</p>
+  </li>
+</ul>
+
+<p><img src="../assets/images/posts/2018-08-17-TensorPack/5-1.png" alt="u-net_fig_2" /></p>
+
+<p>​</p>
+
+<ul>
+  <li>
+    <p>그래서, 내가 세운 모델을 외부에서 사용하고 싶을 때, 즉, 나만의 Trainer를 새로 정의해서 train/test time때, 다르게 동작을 해야하는 상황이라면, TowerContext를 적절히 써서 분기시켜줘야 한다.</p>
+  </li>
+  <li>
+    <p>아래는 Tensorpack Github에서 제공하는 <a href="https://github.com/tensorpack/tensorpack/blob/master/examples/GAN/GAN.py">GANTrainer</a>에서 실제로 TowerContext를 어떻게 설정해주는지 보여주는 예시다.</p>
+
+    <p><img src="../assets/images/posts/2018-08-17-TensorPack/5-2.png" alt="u-net_fig_2" /></p>
+
+    <p>​</p>
+  </li>
+</ul>
 
 <h2 id="thank-you-">Thank you 🙇</h2>
 
